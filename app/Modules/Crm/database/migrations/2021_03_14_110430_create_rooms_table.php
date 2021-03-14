@@ -15,6 +15,14 @@ class CreateRoomsTable extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('flat_id');
+            $table->foreign('flat_id')->references('id')->on('flats');
+            $table->string('name');
+            $table->tinyInteger('status')->default(1);;
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('updated_by')->references('id')->on('users');
             $table->timestamps();
         });
     }

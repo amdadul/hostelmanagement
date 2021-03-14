@@ -15,7 +15,11 @@ class CreateInvoiceDetailsTable extends Migration
     {
         Schema::create('invoice_details', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('invoice_id');
+            $table->foreign('invoice_id')->references('id')->on('invoices');
+            $table->unsignedBigInteger('seat_id');
+            $table->foreign('seat_id')->references('id')->on('seats');
+            $table->double('amount');
         });
     }
 

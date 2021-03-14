@@ -15,6 +15,19 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('max_sl_no');
+            $table->string('invoice_no')->nullable();
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->date('invoice_month');
+            $table->double('amount');
+            $table->date('date');
+            $table->string('invoice_type')->nullable();
+            $table->tinyInteger('full_paid')->default(0);
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('updated_by')->references('id')->on('users');
             $table->timestamps();
         });
     }

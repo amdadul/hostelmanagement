@@ -4,9 +4,14 @@ namespace App\Modules\Crm\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Building extends Model
+class Floor extends Model
 {
     protected $guarded = [];
+
+    public function building()
+    {
+        return $this->belongsTo(Building::class);
+    }
 
     public function flat()
     {
