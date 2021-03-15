@@ -15,6 +15,14 @@ class CreateExpenseTypesTable extends Migration
     {
         Schema::create('expense_types', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('root_id')->nullable();
+            $table->foreign('root_id')->references('id')->on('expense_types');
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('updated_by')->references('id')->on('users');
             $table->timestamps();
         });
     }

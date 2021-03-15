@@ -15,6 +15,15 @@ class CreateAssetsTable extends Migration
     {
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('assets_type')->nullable();
+            $table->foreign('assets_type')->references('id')->on('assets_types');
+            $table->string('description')->nullable();
+            $table->double('depreciation')->default(0);
+            $table->tinyInteger('life_time')->default(0);
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('updated_by')->references('id')->on('users');
             $table->timestamps();
         });
     }

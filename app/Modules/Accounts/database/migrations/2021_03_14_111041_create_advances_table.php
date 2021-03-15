@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAssetsHistoriesTable extends Migration
+class CreateAdvancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,18 @@ class CreateAssetsHistoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('assets_histories', function (Blueprint $table) {
+        Schema::create('advances', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('max_sl_no');
             $table->string('voucher_no')->nullable();
-            $table->unsignedBigInteger('assets_id');
-            $table->foreign('assets_id')->references('id')->on('assets');
-            $table->string('type');
-            $table->double('credit_amount')->nullable();
-            $table->double('debit_amount')->nullable();
+            $table->unsignedBigInteger('seat_id');
+            $table->foreign('seat_id')->references('id')->on('seats');
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->unsignedBigInteger('money_receipt_id')->nullable();
+            $table->foreign('money_receipt_id')->references('id')->on('money_receipts');
             $table->date('date');
+            $table->double('amount')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users');
@@ -39,6 +41,6 @@ class CreateAssetsHistoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assets_histories');
+        Schema::dropIfExists('advances');
     }
 }
