@@ -6,11 +6,11 @@
             </li>
             <li class="active nav-item"><a href="{{ route('admin') }}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span><span class="badge badge badge-primary badge-pill float-right mr-2">3</span></a>
             </li>
-            <li class=" nav-item"><a href="#"><i class="feather icon-monitor"></i><span class="menu-title" data-i18n="Templates">Templates</span></a>
+            <li class=" nav-item"><a href="#"><i class="feather icon-monitor"></i><span class="menu-title" data-i18n="Templates">Configuration</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item" href="#" data-i18n="Vertical">Vertical</a>
+                    <li><a class="menu-item" href="#" data-i18n="Vertical">CRM</a>
                         <ul class="menu-content">
-                            <li><a class="menu-item" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/html/ltr/vertical-modern-menu-template" data-i18n="Modern Menu">Modern Menu</a>
+                            <li><a class="menu-item" href="{{route('crm.buildings.index')}}" data-i18n="Modern Menu">Building</a>
                             </li>
                             <li><a class="menu-item" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/html/ltr/vertical-collapsed-menu-template" data-i18n="Collapsed Menu">Collapsed Menu</a>
                             </li>

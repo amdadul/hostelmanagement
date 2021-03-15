@@ -15,6 +15,14 @@
     </div>
 @endforeach @endif
 
+<div style="display:none" class="alert alert-icon-right alert-success print-success-msg alert-dismissible mb-2" role="alert" >
+    <span class="alert-icon"><i class="fa fa-info"></i></span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </button>
+    <strong>Success!</strong>
+</div>
+
 @if($messages) @foreach($messages as $key => $value)
     <div class="alert alert-icon-right alert-success alert-dismissible mb-2 flash-messages" role="alert">
         <span class="alert-icon"><i class="fa fa-info"></i></span>

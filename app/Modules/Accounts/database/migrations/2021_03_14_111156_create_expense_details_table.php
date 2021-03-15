@@ -18,7 +18,7 @@ class CreateExpenseDetailsTable extends Migration
             $table->unsignedBigInteger('expense_id')->nullable();
             $table->foreign('expense_id')->references('id')->on('expenses');
             $table->unsignedBigInteger('expense_type_id')->nullable();
-            $table->foreign('expense_type_id')->references('id')->on('expense_type');
+            $table->foreign('expense_type_id')->references('id')->on('expense_types');
             $table->double('amount');
             $table->string('remarks')->nullable();
         });
