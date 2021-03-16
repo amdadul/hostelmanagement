@@ -12,7 +12,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title" id="basic-layout-card-center">Building</h4>
+                <h4 class="card-title" id="basic-layout-card-center">Floors</h4>
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                 <div class="heading-elements">
                     <ul class="list-inline mb-0">
@@ -31,17 +31,25 @@
 
                             <div class="form-group">
                                 <label for="building_name">Building Name</label>
-                                <input type="text" id="building_name" class="form-control @error('building_name') is-invalid @enderror"
-                                       placeholder="Building Name" name="building_name" value="{{old('building_name')?old('building_name'):''}}">
+                                <select class="select2 form-control @error('building_name') is-invalid @enderror" id="building_name" name="building_name" >
+                                        <option value="0">Select Building Name</option>
+                                        @foreach($buildings as $building)
+                                            @if($building->id == old('building_name'))
+                                                <option value="{{$building->id}}" selected>{{$building->name}}</option>
+                                            @else
+                                                <option value="{{$building->id}}">{{$building->name}}</option>
+                                            @endif
+                                        @endforeach
+                                </select>
                                 @error('building_name')
                                 <div class="help-block text-danger">{{ $message }} </div> @enderror
                             </div>
 
                             <div class="form-group">
-                                <label for="address">Address</label>
-                                <textarea id="address" class="form-control @error('address') is-invalid @enderror"
-                                          placeholder="Address" name="address">{{old('address')?old('address'):''}}</textarea>
-                                @error('address')
+                                <label for="floor_name">Floor Name</label>
+                                <textarea id="floor_name" class="form-control @error('floor_name') is-invalid @enderror"
+                                          placeholder="Floor Name" name="floor_name">{{old('floor_name')?old('floor_name'):''}}</textarea>
+                                @error('floor_name')
                                 <div class="help-block text-danger">{{ $message }} </div> @enderror
                             </div>
 
@@ -74,8 +82,13 @@
 
             var building_name = $.trim($('#building_name').val());
 
-            if (building_name === '') {
-                toastr.warning(" Please enter building name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
+            var floor_name = $.trim($('#floor_name').val());
+
+            if (building_name === 0 || building_name <= 0) {
+                toastr.warning(" Please Select building name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
+                return false;
+            } else if (floor_name === '') {
+                toastr.warning(" Please enter Floor name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                 return false;
             } else {
                 ajaxSave();
@@ -90,7 +103,7 @@
             }
         });
         $.ajax({
-            url: "{{ route('crm.buildings.store') }}",
+            url: "{{ route('crm.floors.store') }}",
             type: 'post',
             dataType: "json",
             cache: false,
@@ -106,8 +119,8 @@
                 if (result.error === false) {
                     $(".print-success-msg").css('display', 'block');
                     $(".print-success-msg").html(result.message);
-                    $('#building_name').val('');
-                    $('#address').val('');
+                    $('#building_name').val(null).trigger('change');
+                    $('#floor_name').val('');
                     flashMessage('success');
                 } else {
                     printErrorMsg(result.data);

@@ -10,9 +10,9 @@
                 <ul class="menu-content">
                     <li><a class="menu-item" href="#" data-i18n="Vertical">CRM</a>
                         <ul class="menu-content">
-                            <li><a class="menu-item" href="{{route('crm.buildings.index')}}" data-i18n="Modern Menu">Building</a>
+                            <li><a class="menu-item" href="{{route('crm.buildings.index')}}" data-i18n="Modern Menu">Buildings</a>
                             </li>
-                            <li><a class="menu-item" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/html/ltr/vertical-collapsed-menu-template" data-i18n="Collapsed Menu">Collapsed Menu</a>
+                            <li><a class="menu-item" href="{{route('crm.floors.index')}}" data-i18n="Collapsed Menu">Floors</a>
                             </li>
                             <li><a class="menu-item" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/html/ltr/vertical-menu-template" data-i18n="Semi Light">Semi Light</a>
                             </li>

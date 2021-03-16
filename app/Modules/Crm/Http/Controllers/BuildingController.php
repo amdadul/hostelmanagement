@@ -56,7 +56,6 @@ class BuildingController extends Controller
         $data = Building::find($id);
         $data->name = $request->building_name;
         $data->address = $request->address;
-        $data->created_by = auth()->user()->id;
         $data->updated_by = auth()->user()->id;
         if (!$data->save()) {
             return $this->responseJson(true, 200, "Error occur when Updating Building.");
