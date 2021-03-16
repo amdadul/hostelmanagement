@@ -14,7 +14,7 @@
                             </li>
                             <li><a class="menu-item" href="{{route('crm.floors.index')}}" data-i18n="Collapsed Menu">Floors</a>
                             </li>
-                            <li><a class="menu-item" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/html/ltr/vertical-menu-template" data-i18n="Semi Light">Semi Light</a>
+                            <li><a class="menu-item" href="{{route('crm.flats.index')}}" data-i18n="Semi Light">Flats</a>
                             </li>
                             <li><a class="menu-item" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/html/ltr/vertical-menu-template-semi-dark" data-i18n="Semi Dark">Semi Dark</a>
                             </li>

@@ -19,7 +19,17 @@ Route::group(['middleware' => ['auth:web']], function () {
         Route::post('/store', 'FloorController@store')->name('crm.floors.store');
         Route::get('/{id}/edit', 'FloorController@edit')->name('crm.floors.edit');
         Route::post('/{id}/update', 'FloorController@update')->name('crm.floors.update');
+        Route::post('/get-floor', 'FloorController@getFloorByBuilding')->name('crm.floors.get-floor');
         Route::delete('/{id}/delete', 'FloorController@delete')->name('crm.floors.delete');
+    });
+
+    Route::group(['prefix' => 'admin/crm/flats'], function () {
+        Route::get('/', 'FlatController@index')->name('crm.flats.index');
+        Route::get('/create', 'FlatController@create')->name('crm.flats.create');
+        Route::post('/store', 'FlatController@store')->name('crm.flats.store');
+        Route::get('/{id}/edit', 'FlatController@edit')->name('crm.flats.edit');
+        Route::post('/{id}/update', 'FlatController@update')->name('crm.flats.update');
+        Route::delete('/{id}/delete', 'FlatController@delete')->name('crm.flats.delete');
     });
 
 });

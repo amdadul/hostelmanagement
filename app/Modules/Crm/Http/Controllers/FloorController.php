@@ -84,4 +84,10 @@ class FloorController extends Controller
             ]);
         }
     }
+
+    public function getFloorByBuilding(Request $request):?jsonResponse
+    {
+        $data = Floor::where('building_id','=',$request->building_id)->get();
+        return response()->json($data);
+    }
 }
