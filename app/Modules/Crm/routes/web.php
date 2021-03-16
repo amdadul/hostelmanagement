@@ -29,7 +29,18 @@ Route::group(['middleware' => ['auth:web']], function () {
         Route::post('/store', 'FlatController@store')->name('crm.flats.store');
         Route::get('/{id}/edit', 'FlatController@edit')->name('crm.flats.edit');
         Route::post('/{id}/update', 'FlatController@update')->name('crm.flats.update');
+        Route::post('/get-flat', 'FlatController@getFlatByFloor')->name('crm.flats.get-flat');
         Route::delete('/{id}/delete', 'FlatController@delete')->name('crm.flats.delete');
+    });
+
+    Route::group(['prefix' => 'admin/crm/rooms'], function () {
+        Route::get('/', 'RoomController@index')->name('crm.rooms.index');
+        Route::get('/create', 'RoomController@create')->name('crm.rooms.create');
+        Route::post('/store', 'RoomController@store')->name('crm.rooms.store');
+        Route::get('/{id}/edit', 'RoomController@edit')->name('crm.rooms.edit');
+        Route::post('/{id}/update', 'RoomController@update')->name('crm.rooms.update');
+        Route::post('/get-room', 'RoomController@getRoomByFlat')->name('crm.rooms.get-room');
+        Route::delete('/{id}/delete', 'RoomController@delete')->name('crm.rooms.delete');
     });
 
 });

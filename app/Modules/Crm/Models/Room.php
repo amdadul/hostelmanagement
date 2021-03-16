@@ -10,11 +10,11 @@ class Room extends Model
 
     public function flat()
     {
-        $this->belongsTo(Flat::class);
+        return $this->belongsTo(Flat::class);
     }
 
     public function seat()
     {
-        $this->hasMany(Seat::class);
+        return $this->hasMany(Seat::class);
     }
 }

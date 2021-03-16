@@ -87,4 +87,10 @@ class FlatController extends Controller
             ]);
         }
     }
+
+    public function getFlatByFloor(Request $request):?jsonResponse
+    {
+        $data = Flat::where('floor_id','=',$request->floor_id)->get();
+        return response()->json($data);
+    }
 }
