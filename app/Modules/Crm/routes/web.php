@@ -43,4 +43,12 @@ Route::group(['middleware' => ['auth:web']], function () {
         Route::delete('/{id}/delete', 'RoomController@delete')->name('crm.rooms.delete');
     });
 
+    Route::group(['prefix' => 'admin/crm/seats'], function () {
+        Route::get('/', 'SeatController@index')->name('crm.seats.index');
+        Route::get('/create', 'SeatController@create')->name('crm.seats.create');
+        Route::post('/store', 'SeatController@store')->name('crm.seats.store');
+        Route::get('/{id}/edit', 'SeatController@edit')->name('crm.seats.edit');
+        Route::post('/{id}/update', 'SeatController@update')->name('crm.seats.update');
+        Route::delete('/{id}/delete', 'SeatController@delete')->name('crm.seats.delete');
+    });
 });
