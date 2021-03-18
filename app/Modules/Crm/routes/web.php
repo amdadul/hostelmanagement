@@ -62,4 +62,13 @@ Route::group(['middleware' => ['auth:web']], function () {
         Route::post('/deactive', 'SeatPriceController@deactive')->name('crm.seat-prices.deactive');
         Route::delete('/{id}/delete', 'SeatPriceController@delete')->name('crm.seat-prices.delete');
     });
+
+    Route::group(['prefix' => 'admin/crm/customers'], function () {
+        Route::get('/', 'CustomerController@index')->name('crm.customers.index');
+        Route::get('/create', 'CustomerController@create')->name('crm.customers.create');
+        Route::post('/store', 'CustomerController@store')->name('crm.customers.store');
+        Route::get('/{id}/edit', 'CustomerController@edit')->name('crm.customers.edit');
+        Route::post('/{id}/update', 'CustomerController@update')->name('crm.customers.update');
+        Route::delete('/{id}/delete', 'CustomerController@delete')->name('crm.customers.delete');
+    });
 });

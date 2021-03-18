@@ -8,6 +8,14 @@
             </li>
             <li class=" nav-item"><a href="#"><i class="feather icon-monitor"></i><span class="menu-title" data-i18n="Templates">Configuration</span></a>
                 <ul class="menu-content">
+                    <li><a class="menu-item" href="#" data-i18n="Vertical">Software Config</a>
+                        <ul class="menu-content">
+                            <li><a class="menu-item" href="{{route('config.lookups.index')}}" data-i18n="Modern Menu">Lookups</a>
+                            </li>
+                            <li><a class="menu-item" href="{{route('config.settings.index')}}" data-i18n="Collapsed Menu">Settings</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li><a class="menu-item" href="#" data-i18n="Vertical">CRM</a>
                         <ul class="menu-content">
                             <li><a class="menu-item" href="{{route('crm.buildings.index')}}" data-i18n="Modern Menu">Buildings</a>

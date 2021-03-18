@@ -16,6 +16,11 @@ class Customer extends Model
         $this->hasMany(SeatBooking::class);
     }
 
+    public function seatBooked()
+    {
+        $this->hasOne(SeatBooking::class)->latest();
+    }
+
     public function invoice()
     {
         $this->hasMany(Invoice::class);
