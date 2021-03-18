@@ -30,15 +30,11 @@
                         <div class="form-body">
 
                             <div class="form-group">
-                                <label for="building_name">Building Name</label>
+                                <label for="building_name">Building Name <span class="required text-danger">*</span></label>
                                 <select class="select2 form-control @error('building_name') is-invalid @enderror" id="building_name" name="building_name" >
                                         <option value="0">Select Building Name</option>
                                         @foreach($buildings as $building)
-                                            @if($building->id == old('building_name'))
-                                                <option value="{{$building->id}}" selected>{{$building->name}}</option>
-                                            @else
-                                                <option value="{{$building->id}}">{{$building->name}}</option>
-                                            @endif
+                                                <option value="{{$building->id}}" {{ old('building_name')==$building->id?'selected':'' }}>{{$building->name}}</option>
                                         @endforeach
                                 </select>
                                 @error('building_name')
@@ -46,7 +42,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="floor_name">Floor Name</label>
+                                <label for="floor_name">Floor Name <span class="required text-danger">*</span></label>
                                 <select class="select2 form-control @error('floor_name') is-invalid @enderror" id="floor_name" name="floor_name" >
                                     <option value="0">Select Floor Name</option>
 
@@ -56,7 +52,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="flat_name">Flat Name</label>
+                                <label for="flat_name">Flat Name <span class="required text-danger">*</span></label>
                                 <select class="select2 form-control @error('flat_name') is-invalid @enderror" id="flat_name" name="flat_name" >
                                     <option value="0">Select Flat Name</option>
 
@@ -66,7 +62,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="room_name">Room Name</label>
+                                <label for="room_name">Room Name <span class="required text-danger">*</span></label>
                                 <select class="select2 form-control @error('room_name') is-invalid @enderror" id="room_name" name="room_name" >
                                     <option value="0">Select Room Name</option>
 
@@ -76,10 +72,26 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="seat_name">Seat Name</label>
+                                <label for="seat_name">Seat Name <span class="required text-danger">*</span></label>
                                 <input id="seat_name" class="form-control @error('seat_name') is-invalid @enderror"
                                        placeholder="Seat Name" name="seat_name" value="{{old('seat_name')?old('seat_name'):''}}" />
                                 @error('seat_name')
+                                <div class="help-block text-danger">{{ $message }} </div> @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="seat_code">Seat Code</label>
+                                <input id="seat_code" class="form-control @error('seat_code') is-invalid @enderror"
+                                       placeholder="Seat Code" name="seat_code" value="{{old('seat_code')?old('seat_code'):''}}" />
+                                @error('seat_code')
+                                <div class="help-block text-danger">{{ $message }} </div> @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="seat_price">Seat Price <span class="required text-danger">*</span></label>
+                                <input id="seat_price" class="form-control @error('seat_price') is-invalid @enderror"
+                                       placeholder="Seat Price" name="seat_price" value="{{old('seat_price')?old('seat_price'):''}}" />
+                                @error('seat_price')
                                 <div class="help-block text-danger">{{ $message }} </div> @enderror
                             </div>
 
@@ -183,20 +195,25 @@
 
             var seat_name = $.trim($('#seat_name').val());
 
-            if (building_name === 0 || building_name <= 0) {
+            var seat_price = $.trim($('#seat_price').val());
+
+            if (building_name == 0 || building_name <= 0) {
                 toastr.warning(" Please Select building name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                 return false;
-            } else if (floor_name === 0 || floor_name <= 0) {
+            } else if (floor_name == 0 || floor_name <= 0) {
                 toastr.warning(" Please Select floor name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                 return false;
-            } else if (flat_name === '') {
+            } else if (flat_name === '' || flat_name == 0) {
                 toastr.warning(" Please Select flat name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                 return false;
-            } else if (room_name === '') {
+            } else if (room_name === '' || room_name == 0) {
                 toastr.warning(" Please Select room name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                 return false;
             } else if (seat_name === '') {
                 toastr.warning(" Please enter seat name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
+                return false;
+            } else if (seat_price === '' || seat_price <= 0) {
+                toastr.warning(" Please enter seat Price!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                 return false;
             } else {
                 ajaxSave();
@@ -211,7 +228,7 @@
             }
         });
         $.ajax({
-            url: "{{ route('crm.rooms.store') }}",
+            url: "{{ route('crm.seats.store') }}",
             type: 'post',
             dataType: "json",
             cache: false,

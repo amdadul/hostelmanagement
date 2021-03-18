@@ -30,15 +30,11 @@
                         <div class="form-body">
 
                             <div class="form-group">
-                                <label for="building_name">Building Name</label>
+                                <label for="building_name">Building Name <span class="required text-danger">*</span></label>
                                 <select class="select2 form-control @error('building_name') is-invalid @enderror" id="building_name" name="building_name" >
                                         <option value="0">Select Building Name</option>
                                         @foreach($buildings as $building)
-                                            @if($building->id == old('building_name')?old('building_name'):$data->flat->floor->building_id)
-                                                <option value="{{$building->id}}" selected>{{$building->name}}</option>
-                                            @else
-                                                <option value="{{$building->id}}">{{$building->name}}</option>
-                                            @endif
+                                                <option value="{{$building->id}}" {{ (old('building_name')?old('building_name'):$data->flat->floor->building_id)==$building->id?'selected':'' }}>{{$building->name}}</option>
                                         @endforeach
                                 </select>
                                 @error('building_name')
@@ -46,15 +42,11 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="floor_name">Floor Name</label>
+                                <label for="floor_name">Floor Name <span class="required text-danger">*</span></label>
                                 <select class="select2 form-control @error('floor_name') is-invalid @enderror" id="floor_name" name="floor_name" >
                                     <option value="0">Select Floor Name</option>
                                     @foreach($floors as $floor)
-                                        @if($floor->id == old('floor_name')?old('floor_name'):$data->flat->floor_id)
-                                            <option value="{{$floor->id}}" selected>{{$floor->name}}</option>
-                                        @else
-                                            <option value="{{$floor->id}}">{{$floor->name}}</option>
-                                        @endif
+                                            <option value="{{$floor->id}}" {{ (old('floor_name')?old('floor_name'):$data->flat->floor_id)==$floor->id?'selected':'' }}>{{$floor->name}}</option>
                                     @endforeach
                                 </select>
                                 @error('floor_name')
@@ -62,15 +54,11 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="flat_name">Flat Name</label>
+                                <label for="flat_name">Flat Name <span class="required text-danger">*</span></label>
                                 <select class="select2 form-control @error('flat_name') is-invalid @enderror" id="flat_name" name="flat_name" >
                                     <option value="0">Select Flat Name</option>
                                     @foreach($flats as $flat)
-                                        @if($flat->id == old('flat_name')?old('flat_name'):$data->flat_id)
-                                            <option value="{{$flat->id}}" selected>{{$flat->name}}</option>
-                                        @else
-                                            <option value="{{$flat->id}}">{{$flat->name}}</option>
-                                        @endif
+                                            <option value="{{$flat->id}}" {{ (old('flat_name')?old('flat_name'):$data->flat_id)==$flat->id?'selected':'' }}>{{$flat->name}}</option>
                                     @endforeach
                                 </select>
                                 @error('flat_name')
@@ -78,7 +66,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="room_name">Room Name</label>
+                                <label for="room_name">Room Name <span class="required text-danger">*</span></label>
                                 <input id="room_name" class="form-control @error('room_name') is-invalid @enderror"
                                        placeholder="Room Name" name="room_name" value="{{old('room_name')?old('room_name'):$data->name}}" />
                                 @error('room_name')

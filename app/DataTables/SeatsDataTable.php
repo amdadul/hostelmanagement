@@ -34,8 +34,8 @@ class SeatsDataTable extends DataTable
                 return "
                     <div class='form-group'>
                         <div class='btn-group' role='group' aria-label='Basic example'>
-                            <a href='rooms/$data->id/edit' class='btn btn-icon btn-secondary'><i class='fa fa-pencil-square-o'></i> Edit</a>
-                            <button data-remote='rooms/$data->id/delete' class='btn btn-icon btn-danger btn-delete'><i class='fa fa-trash-o'></i> Delete</button>
+                            <a href='seats/$data->id/edit' class='btn btn-icon btn-secondary'><i class='fa fa-pencil-square-o'></i> Edit</a>
+                            <button data-remote='seats/$data->id/delete' class='btn btn-icon btn-danger btn-delete'><i class='fa fa-trash-o'></i> Delete</button>
                         </div>
                    </div>";
             })
@@ -50,6 +50,9 @@ class SeatsDataTable extends DataTable
             })
             ->editColumn('building_id',function ($data){
                 return isset($data->room->flat->floor->building->name)?$data->room->flat->floor->building->name:'N/A';
+            })
+            ->editColumn('price_id',function ($data){
+                return isset($data->seatPrice->price)?$data->seatPrice->price:'N/A';
             })
             ->rawColumns(['action'])
             ->removeColumn('id');
@@ -132,6 +135,8 @@ class SeatsDataTable extends DataTable
             Column::make('flat_id')->title('Flat Name'),
             Column::make('room_id')->title('Room Name'),
             Column::make('name')->title('Seat Name'),
+            Column::make('code')->title('Seat Code'),
+            Column::make('price_id')->title('Seat Price'),
         ];
     }
 

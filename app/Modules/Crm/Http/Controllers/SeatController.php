@@ -8,6 +8,8 @@ use App\Modules\Crm\Models\Building;
 use App\Modules\Crm\Models\Flat;
 use App\Modules\Crm\Models\Floor;
 use App\Modules\Crm\Models\Room;
+use App\Modules\Crm\Models\Seat;
+use App\Modules\Crm\Models\SeatPrice;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -29,51 +31,79 @@ class SeatController extends Controller
     public function store(Request $request):?jsonResponse
     {
         $request->validate([
-            'flat_name'=>'required',
             'room_name'=>'required',
+            'seat_name'=>'required',
+            'seat_price'=>'required',
         ]);
 
-        $data = new Room();
-        $data->flat_id = $request->flat_name;
-        $data->name = $request->room_name;
+        $data = new Seat();
+        $data->room_id = $request->room_name;
+        $data->name = $request->seat_name;
+        $data->code = $request->seat_code;
         $data->created_by = auth()->user()->id;
         $data->updated_by = auth()->user()->id;
         if (!$data->save()) {
-            return $this->responseJson(true, 200, "Error occur when Creating Room.");
+            return $this->responseJson(true, 200, "Error occur when Creating Seat.");
         }
-        return $this->responseJson(false, 200, "Room Created Successfully.");
+        $seatPrice = new SeatPrice();
+        $seatPrice->seat_id = $data->id;
+        $seatPrice->price = $request->seat_price;
+        $seatPrice->date = date('Y-m-d');
+        if($seatPrice->save())
+        {
+            return $this->responseJson(false, 200, "Seat Created Successfully.");
+        }
+        else
+        {
+            return $this->responseJson(true, 200, "Error occur when Creating Seat Price.");
+        }
+
     }
 
     public function edit($id)
     {
-        $pageTitle = "Edit a Room";
+        $pageTitle = "Edit a Seat";
         $buildings = Building::all();
         $floors = Floor::all();
         $flats = Flat::all();
-        $data = Room::find($id);
-        return view('Crm::seats.edit',compact('pageTitle','buildings','floors','flats','data'));
+        $rooms = Room::all();
+        $data = Seat::find($id);
+        return view('Crm::seats.edit',compact('pageTitle','buildings','floors','flats','rooms','data'));
     }
 
     public function update(Request $request,$id):?jsonResponse
     {
         $request->validate([
-            'flat_name'=>'required',
             'room_name'=>'required',
+            'seat_name'=>'required',
+            'seat_price'=>'required',
         ]);
 
-        $data = Room::find($id);
-        $data->flat_id = $request->flat_name;
-        $data->name = $request->room_name;
+        $data = Seat::find($id);
+        $data->room_id = $request->room_name;
+        $data->name = $request->seat_name;
+        $data->code = $request->seat_code;
         $data->updated_by = auth()->user()->id;
         if (!$data->save()) {
-            return $this->responseJson(true, 200, "Error occur when Updating Room.");
+            return $this->responseJson(true, 200, "Error occur when Updating Seat.");
         }
-        return $this->responseJson(false, 200, "Room Updated Successfully.");
+        $seatPrice = new SeatPrice();
+        $seatPrice->seat_id = $data->id;
+        $seatPrice->price = $request->seat_price;
+        $seatPrice->date = date('Y-m-d');
+        if($seatPrice->save())
+        {
+            return $this->responseJson(false, 200, "Seat Updated Successfully.");
+        }
+        else
+        {
+            return $this->responseJson(true, 200, "Error occur when Updating Seat Price.");
+        }
     }
 
     public function delete($id)
     {
-        $data = Room::find($id);
+        $data = Seat::find($id);
         if($data->delete()) {
             return response()->json([
                 'success' => true,

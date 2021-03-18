@@ -10,36 +10,41 @@ class Seat extends Model
 
     public function room()
     {
-        $this->belongsTo(Room::class);
+        return $this->belongsTo(Room::class);
+    }
+
+    public function seatPrices()
+    {
+        return $this->hasMany(SeatPrice::class,'seat_id','id');
     }
 
     public function seatPrice()
     {
-        $this->hasMany(SeatPrice::class);
+        return $this->hasOne(SeatPrice::class,'seat_id','id')->latest();
     }
 
     public function seatBooking()
     {
-        $this->hasMany(SeatBooking::class);
+        return $this->hasMany(SeatBooking::class);
     }
 
     public function invoiceDetails()
     {
-        $this->hasMany(InvoiceDetails::class);
+        return $this->hasMany(InvoiceDetails::class);
     }
 
     public function advance()
     {
-        $this->hasMany(Advance::class);
+        return $this->hasMany(Advance::class);
     }
 
     public function serviceCharge()
     {
-        $this->hasMany(ServiceCharge::class);
+        return $this->hasMany(ServiceCharge::class);
     }
 
     public function moneyReceipt()
     {
-        $this->hasMany(MoneyReceipt::class);
+        return $this->hasMany(MoneyReceipt::class);
     }
 }
