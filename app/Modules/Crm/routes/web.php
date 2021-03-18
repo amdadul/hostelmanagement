@@ -48,7 +48,18 @@ Route::group(['middleware' => ['auth:web']], function () {
         Route::get('/create', 'SeatController@create')->name('crm.seats.create');
         Route::post('/store', 'SeatController@store')->name('crm.seats.store');
         Route::get('/{id}/edit', 'SeatController@edit')->name('crm.seats.edit');
+        Route::post('/get-seat', 'SeatController@getSeatByRoom')->name('crm.seats.get-seat');
         Route::post('/{id}/update', 'SeatController@update')->name('crm.seats.update');
         Route::delete('/{id}/delete', 'SeatController@delete')->name('crm.seats.delete');
+    });
+
+    Route::group(['prefix' => 'admin/crm/seat-prices'], function () {
+        Route::get('/', 'SeatPriceController@index')->name('crm.seat-prices.index');
+        Route::get('/create', 'SeatPriceController@create')->name('crm.seat-prices.create');
+        Route::post('/store', 'SeatPriceController@store')->name('crm.seat-prices.store');
+        Route::get('/{id}/edit', 'SeatPriceController@edit')->name('crm.seat-prices.edit');
+        Route::post('/{id}/update', 'SeatPriceController@update')->name('crm.seat-prices.update');
+        Route::post('/deactive', 'SeatPriceController@deactive')->name('crm.seat-prices.deactive');
+        Route::delete('/{id}/delete', 'SeatPriceController@delete')->name('crm.seat-prices.delete');
     });
 });

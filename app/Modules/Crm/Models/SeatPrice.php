@@ -10,6 +10,6 @@ class SeatPrice extends Model
 
     public function seat()
     {
-        $this->belongsTo(Seat::class);
+        return $this->belongsTo(Seat::class);
     }
 }

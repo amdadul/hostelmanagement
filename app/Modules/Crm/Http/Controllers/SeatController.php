@@ -49,6 +49,8 @@ class SeatController extends Controller
         $seatPrice->seat_id = $data->id;
         $seatPrice->price = $request->seat_price;
         $seatPrice->date = date('Y-m-d');
+        $seatPrice->created_by = auth()->user()->id;
+        $seatPrice->updated_by = auth()->user()->id;
         if($seatPrice->save())
         {
             return $this->responseJson(false, 200, "Seat Created Successfully.");
@@ -87,10 +89,14 @@ class SeatController extends Controller
         if (!$data->save()) {
             return $this->responseJson(true, 200, "Error occur when Updating Seat.");
         }
+
+        SeatPrice::where('seat_id','=',$data->id)->update(['status'=>0]);
+
         $seatPrice = new SeatPrice();
         $seatPrice->seat_id = $data->id;
         $seatPrice->price = $request->seat_price;
         $seatPrice->date = date('Y-m-d');
+        $seatPrice->updated_by = auth()->user()->id;
         if($seatPrice->save())
         {
             return $this->responseJson(false, 200, "Seat Updated Successfully.");
@@ -117,5 +123,11 @@ class SeatController extends Controller
                 'message' => 'Please try again!',
             ]);
         }
+    }
+
+    public function getSeatByRoom(Request $request):?jsonResponse
+    {
+        $data = Seat::where('room_id','=',$request->room_id)->get();
+        return response()->json($data);
     }
 }

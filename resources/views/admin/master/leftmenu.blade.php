@@ -20,13 +20,11 @@
                             </li>
                             <li><a class="menu-item" href="{{route('crm.seats.index')}}" data-i18n="Nav Dark">Seats</a>
                             </li>
-                            <li><a class="menu-item" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/html/ltr/vertical-menu-template-light" data-i18n="Light">Light</a>
-                            </li>
-                            <li><a class="menu-item" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/html/ltr/vertical-overlay-menu-template" data-i18n="Overlay Menu">Overlay Menu</a>
+                            <li><a class="menu-item" href="{{route('crm.seat-prices.index')}}" data-i18n="Nav Dark">Seat Prices</a>
                             </li>
                         </ul>
                     </li>
-                    <li><a class="menu-item" href="#" data-i18n="Horizontal">Horizontal</a>
+                    <li><a class="menu-item" href="#" data-i18n="Horizontal">Accounts</a>
                         <ul class="menu-content">
                             <li><a class="menu-item" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/html/ltr/horizontal-menu-template" data-i18n="Classic">Classic</a>
                             </li>
