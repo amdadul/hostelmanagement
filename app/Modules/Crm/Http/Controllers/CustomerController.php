@@ -117,7 +117,6 @@ class CustomerController extends Controller
         $data->marital_status = $request->marital_status;
         $data->gender = $request->gender;
         $data->profession = $request->profession;
-        $data->created_by = auth()->user()->id;
         $data->updated_by = auth()->user()->id;
 
         if (!$data->save()) {

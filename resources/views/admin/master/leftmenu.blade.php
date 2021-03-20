@@ -4,11 +4,11 @@
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class=" navigation-header"><span>General</span><i class=" feather icon-minus" data-toggle="tooltip" data-placement="right" data-original-title="General"></i>
             </li>
-            <li class="active nav-item"><a href="{{ route('admin') }}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span><span class="badge badge badge-primary badge-pill float-right mr-2">3</span></a>
+            <li class="active nav-item"><a href="{{ route('admin') }}"><i class="fa fa-tachometer" aria-hidden="true"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span><span class="badge badge badge-primary badge-pill float-right mr-2">3</span></a>
             </li>
-            <li class=" nav-item"><a href="#"><i class="feather icon-monitor"></i><span class="menu-title" data-i18n="Templates">Configuration</span></a>
+            <li class=" nav-item"><a href="#"><i class="fa fa-cogs" aria-hidden="true"></i><span class="menu-title" data-i18n="Templates">Configuration</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item" href="#" data-i18n="Vertical">Software Config</a>
+                    <li> <a class="menu-item" href="#" data-i18n="Vertical"><i class="fa fa-th-large" aria-hidden="true"></i> Software Config</a>
                         <ul class="menu-content">
                             <li><a class="menu-item" href="{{route('config.lookups.index')}}" data-i18n="Modern Menu">Lookups</a>
                             </li>
@@ -16,7 +16,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a class="menu-item" href="#" data-i18n="Vertical">CRM</a>
+                    <li><a class="menu-item" href="#" data-i18n="Vertical"><i class="fa fa-building" aria-hidden="true"></i> CRM</a>
                         <ul class="menu-content">
                             <li><a class="menu-item" href="{{route('crm.buildings.index')}}" data-i18n="Modern Menu">Buildings</a>
                             </li>
@@ -32,7 +32,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a class="menu-item" href="#" data-i18n="Horizontal">Accounts</a>
+                    <li> <a class="menu-item" href="#" data-i18n="Horizontal"><i class="fa fa-money" aria-hidden="true"></i> Accounts</a>
                         <ul class="menu-content">
                             <li><a class="menu-item" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/html/ltr/horizontal-menu-template" data-i18n="Classic">Classic</a>
                             </li>
@@ -42,50 +42,9 @@
                     </li>
                 </ul>
             </li>
-            <li class=" nav-item"><a href="#"><i class="feather icon-layout"></i><span class="menu-title" data-i18n="Layouts">Layouts</span></a>
+            <li class=" nav-item"><a href="#"><i class="fa fa-users" aria-hidden="true"></i><span class="menu-title" data-i18n="Layouts">CRM</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item" href="#" data-i18n="Page Layouts">Page Layouts</a>
-                        <ul class="menu-content">
-                            <li><a class="menu-item" href="layout-1-column.html" data-i18n="1 column">1 column</a>
-                            </li>
-                            <li><a class="menu-item" href="layout-2-columns.html" data-i18n="2 columns">2 columns</a>
-                            </li>
-                            <li><a class="menu-item" href="#" data-i18n="Content Det Sidebar">Content Det Sidebar</a>
-                                <ul class="menu-content">
-                                    <li><a class="menu-item" href="layout-content-detached-left-sidebar.html" data-i18n="Detached left sidebar">Detached left sidebar</a>
-                                    </li>
-                                    <li><a class="menu-item" href="layout-content-detached-left-sticky-sidebar.html" data-i18n="Detached sticky left sidebar">Detached sticky left sidebar</a>
-                                    </li>
-                                    <li><a class="menu-item" href="layout-content-detached-right-sidebar.html" data-i18n="Detached right sidebar">Detached right sidebar</a>
-                                    </li>
-                                    <li><a class="menu-item" href="layout-content-detached-right-sticky-sidebar.html" data-i18n="Detached sticky right sidebar">Detached sticky right sidebar</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="navigation-divider"></li>
-                            <li><a class="menu-item" href="layout-fixed-navbar.html" data-i18n="Fixed navbar">Fixed navbar</a>
-                            </li>
-                            <li><a class="menu-item" href="layout-fixed-navigation.html" data-i18n="Fixed navigation">Fixed navigation</a>
-                            </li>
-                            <li><a class="menu-item" href="layout-fixed-navbar-navigation.html" data-i18n="Fixed navbar &amp; navigation">Fixed navbar &amp; navigation</a>
-                            </li>
-                            <li><a class="menu-item" href="layout-fixed-navbar-footer.html" data-i18n="Fixed navbar &amp; footer">Fixed navbar &amp; footer</a>
-                            </li>
-                            <li class="navigation-divider"></li>
-                            <li><a class="menu-item" href="layout-fixed.html" data-i18n="Fixed layout">Fixed layout</a>
-                            </li>
-                            <li><a class="menu-item" href="layout-boxed.html" data-i18n="Boxed layout">Boxed layout</a>
-                            </li>
-                            <li><a class="menu-item" href="layout-static.html" data-i18n="Static layout">Static layout</a>
-                            </li>
-                            <li class="navigation-divider"></li>
-                            <li><a class="menu-item" href="layout-light.html" data-i18n="Light layout">Light layout</a>
-                            </li>
-                            <li><a class="menu-item" href="layout-dark.html" data-i18n="Dark layout">Dark layout</a>
-                            </li>
-                            <li><a class="menu-item" href="layout-semi-dark.html" data-i18n="Semi dark layout">Semi dark layout</a>
-                            </li>
-                        </ul>
+                    <li><a class="menu-item" href="{{route('crm.customers.index')}}" data-i18n="Page Layouts">Customer</a>
                     </li>
                     <li><a class="menu-item" href="#" data-i18n="Navbars">Navbars</a>
                         <ul class="menu-content">
