@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 
+use App\Modules\Config\Models\lookup;
 use App\Modules\Crm\Models\Building;
 use App\Modules\Crm\Models\Customer;
 use App\Modules\Crm\Models\Flat;
@@ -39,6 +40,12 @@ class CustomersDataTable extends DataTable
                             <button data-remote='customers/$data->id/delete' class='btn btn-icon btn-danger btn-delete'><i class='fa fa-trash-o'></i> Delete</button>
                         </div>
                    </div>";
+            })
+            ->editColumn('profession',function ($data){
+                return lookup::getLookupByCode(lookup::PROFESSION,$data->profession);
+            })
+            ->editColumn('building_id',function ($data){
+                return isset($data->building->name)?$data->building->name:'N/A';
             })
             ->editColumn('seat_id',function ($data){
                 return isset($data->seatBooked->seat->name)?$data->seatBooked->seat->name:'N/A';
@@ -119,6 +126,7 @@ class CustomersDataTable extends DataTable
                 ->footer('')
                 ->exportable(true)
                 ->printable(true),
+            Column::make('building_id')->title('Building Name'),
             Column::make('name')->title('Customer Name'),
             Column::make('phone_no')->title('Phone No'),
             Column::make('address'),

@@ -11,33 +11,38 @@ class Customer extends Model
 {
     protected $guarded = [];
 
+    public function building()
+    {
+        return $this->belongsTo(Building::class);
+    }
+
     public function seatBooking()
     {
-        $this->hasMany(SeatBooking::class);
+        return $this->hasMany(SeatBooking::class);
     }
 
     public function seatBooked()
     {
-        $this->hasOne(SeatBooking::class)->latest();
+        return $this->hasOne(SeatBooking::class)->latest();
     }
 
     public function invoice()
     {
-        $this->hasMany(Invoice::class);
+        return $this->hasMany(Invoice::class);
     }
 
     public function advance()
     {
-        $this->hasMany(Advance::class);
+        return $this->hasMany(Advance::class);
     }
 
     public function serviceCharge()
     {
-        $this->hasMany(ServiceCharge::class);
+        return $this->hasMany(ServiceCharge::class);
     }
 
     public function moneyReceipt()
     {
-        $this->hasMany(MoneyReceipt::class);
+        return $this->hasMany(MoneyReceipt::class);
     }
 }

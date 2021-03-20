@@ -9,7 +9,7 @@
 </div>
 
 <div class="row justify-content-md-center">
-    <div class="col-md-6">
+    <div class="col-md-7">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title" id="basic-layout-card-center">Create a Customer</h4>
@@ -25,13 +25,13 @@
             </div>
             <div class="card-content collapse show">
                 <div class="card-body">
-                    <form class="form" id="building" method="post">
+                    <form class="form" id="customer" method="post">
                         @csrf
                         <div class="form-body">
 
                             <div class="form-group">
                                 <label for="building_name">Building Name <span class="required text-danger">*</span></label>
-                                <select class="select2 form-control @error('building_name') is-invalid @enderror" id="building_name" name="building_name" >
+                                <select class="select2 form-control @error('building_name') is-invalid @enderror" id="building_name" name="building_name" required>
                                         <option value="0">Select Building Name</option>
                                         @foreach($buildings as $building)
                                                 <option value="{{$building->id}}" {{ old('building_name')==$building->id?'selected':'' }}>{{$building->name}}</option>
@@ -42,57 +42,143 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="floor_name">Floor Name <span class="required text-danger">*</span></label>
-                                <select class="select2 form-control @error('floor_name') is-invalid @enderror" id="floor_name" name="floor_name" >
-                                    <option value="0">Select Floor Name</option>
-
-                                </select>
-                                @error('floor_name')
+                                <label for="customer_name">Customer Name <span class="required text-danger">*</span></label>
+                                <input id="customer_name" class="form-control @error('customer_name') is-invalid @enderror"
+                                       placeholder="Customer Name" name="customer_name" value="{{old('customer_name')?old('customer_name'):''}}" required/>
+                                @error('customer_name')
                                 <div class="help-block text-danger">{{ $message }} </div> @enderror
                             </div>
 
                             <div class="form-group">
-                                <label for="flat_name">Flat Name <span class="required text-danger">*</span></label>
-                                <select class="select2 form-control @error('flat_name') is-invalid @enderror" id="flat_name" name="flat_name" >
-                                    <option value="0">Select Flat Name</option>
-
-                                </select>
-                                @error('flat_name')
+                                <label for="email">Customer Email </label>
+                                <input id="email" class="form-control @error('email') is-invalid @enderror"
+                                       placeholder="Customer Email" name="email" value="{{old('email')?old('email'):''}}" />
+                                @error('email')
                                 <div class="help-block text-danger">{{ $message }} </div> @enderror
                             </div>
 
-                            <div class="form-group">
-                                <label for="room_name">Room Name <span class="required text-danger">*</span></label>
-                                <select class="select2 form-control @error('room_name') is-invalid @enderror" id="room_name" name="room_name" >
-                                    <option value="0">Select Room Name</option>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="phone">Customer Phone <span class="required text-danger">*</span></label>
+                                        <input id="phone" class="form-control @error('phone') is-invalid @enderror"
+                                               placeholder="Customer Phone" name="phone" value="{{old('phone')?old('phone'):''}}" required/>
+                                        @error('phone')
+                                        <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                    </div>
+                                </div>
 
-                                </select>
-                                @error('room_name')
-                                <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="nid">NID/ Birth Certificate No  <span class="required text-danger">*</span></label>
+                                        <input id="nid" class="form-control @error('nid') is-invalid @enderror"
+                                               placeholder="NID/ Birth Certificate No" name="nid" value="{{old('nid')?old('nid'):''}}" required/>
+                                        @error('nid')
+                                        <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="seat_name">Seat Name <span class="required text-danger">*</span></label>
-                                <input id="seat_name" class="form-control @error('seat_name') is-invalid @enderror"
-                                       placeholder="Seat Name" name="seat_name" value="{{old('seat_name')?old('seat_name'):''}}" />
-                                @error('seat_name')
+                                <label for="address">Address <span class="required text-danger">*</span></label>
+                                <textarea id="address" class="form-control @error('address') is-invalid @enderror"
+                                          placeholder="Address" name="address" required>{{old('address')?old('address'):''}}</textarea>
+                                @error('address')
                                 <div class="help-block text-danger">{{ $message }} </div> @enderror
                             </div>
 
-                            <div class="form-group">
-                                <label for="seat_code">Seat Code</label>
-                                <input id="seat_code" class="form-control @error('seat_code') is-invalid @enderror"
-                                       placeholder="Seat Code" name="seat_code" value="{{old('seat_code')?old('seat_code'):''}}" />
-                                @error('seat_code')
-                                <div class="help-block text-danger">{{ $message }} </div> @enderror
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="gender">Gender <span class="required text-danger">*</span></label>
+                                        <select class="select2 form-control @error('gender') is-invalid @enderror" id="gender" name="gender" required>
+                                            <option value="0">Select Gender</option>
+                                            @foreach($genders as $gender)
+                                                <option value="{{$gender->code}}" {{ old('gender')==$gender->code?'selected':'' }}>{{$gender->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('gender')
+                                        <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="religion">Religion <span class="required text-danger">*</span></label>
+                                        <select class="select2 form-control @error('religion') is-invalid @enderror" id="religion" name="religion" required>
+                                            <option value="0">Select Religion</option>
+                                            @foreach($religions as $religion)
+                                                <option value="{{$religion->code}}" {{ old('religion')==$religion->code?'selected':'' }}>{{$religion->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('religion')
+                                        <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="marital_status">Marital Status <span class="required text-danger">*</span></label>
+                                        <select class="select2 form-control @error('marital_status') is-invalid @enderror" id="marital_status" name="marital_status" required>
+                                            <option value="0">Select Marital Status</option>
+                                            @foreach($marital_statuses as $marital_status)
+                                                <option value="{{$marital_status->code}}" {{ old('marital_status')==$marital_status->code?'selected':'' }}>{{$marital_status->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('marital_status')
+                                        <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="profession">Profession <span class="required text-danger">*</span></label>
+                                        <select class="select2 form-control @error('profession') is-invalid @enderror" id="profession" name="profession" required>
+                                            <option value="0">Select Profession</option>
+                                            @foreach($professions as $profession)
+                                                <option value="{{$profession->code}}" {{ old('profession')==$profession->code?'selected':'' }}>{{$profession->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('profession')
+                                        <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="seat_price">Seat Price <span class="required text-danger">*</span></label>
-                                <input id="seat_price" class="form-control @error('seat_price') is-invalid @enderror"
-                                       placeholder="Seat Price" name="seat_price" value="{{old('seat_price')?old('seat_price'):''}}" />
-                                @error('seat_price')
+                                <label for="guardian_name">Guardian Name <span class="required text-danger">*</span></label>
+                                <input id="guardian_name" class="form-control @error('guardian_name') is-invalid @enderror"
+                                       placeholder="Guardian Name" name="guardian_name" value="{{old('guardian_name')?old('guardian_name'):''}}" required/>
+                                @error('guardian_name')
                                 <div class="help-block text-danger">{{ $message }} </div> @enderror
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="gphone">Guardian Phone No <span class="required text-danger">*</span></label>
+                                        <input id="gphone" class="form-control @error('gphone') is-invalid @enderror"
+                                               placeholder="Guardian Phone No" name="gphone" value="{{old('gphone')?old('gphone'):''}}" required/>
+                                        @error('gphone')
+                                        <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="relation">Relation with Guardian <span class="required text-danger">*</span></label>
+                                        <select class="select2 form-control @error('relation') is-invalid @enderror" id="relation" name="relation" required>
+                                            <option value="0">Select Relation</option>
+                                            @foreach($relations as $relation)
+                                                <option value="{{$relation->code}}" {{ old('relation')==$relation->code?'selected':'' }}>{{$relation->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('relation')
+                                        <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -118,102 +204,29 @@
 
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-    $('#building_name').on('change', e => {
-        $('#floor_name').empty();
-        var building_name = $.trim($('#building_name').val());
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url: "{{ route('crm.floors.get-floor') }}",
-            type: 'post',
-            data: {'building_id': building_name},
-            success: data => {
-                $('#floor_name').append(`<option value="0">Select Floor Name</option>`)
-                data.forEach(floor =>
-                    $('#floor_name').append(`<option value="${floor.id}">${floor.name}</option>`)
-                )
-            }
-        })
-    })
 
-    $('#floor_name').on('change', e => {
-        $('#flat_name').empty();
-        var floor_name = $.trim($('#floor_name').val());
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url: "{{ route('crm.flats.get-flat') }}",
-            type: 'post',
-            data: {'floor_id': floor_name},
-            success: data => {
-                $('#flat_name').append(`<option value="0">Select Floor Name</option>`)
-                data.forEach(flat =>
-                    $('#flat_name').append(`<option value="${flat.id}">${flat.name}</option>`)
-                )
-            }
-        })
-    })
-
-    $('#flat_name').on('change', e => {
-        $('#room_name').empty();
-        var flat_name = $.trim($('#flat_name').val());
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url: "{{ route('crm.rooms.get-room') }}",
-            type: 'post',
-            data: {'flat_id': flat_name},
-            success: data => {
-                $('#room_name').append(`<option value="0">Select Room Name</option>`)
-                data.forEach(room =>
-                    $('#room_name').append(`<option value="${room.id}">${room.name}</option>`)
-                )
-            }
-        })
-    })
 
     $().ready(function () {
-        $('form#building').submit(function (e) {
+        $('form#customer').submit(function (e) {
             e.preventDefault();
 
             var building_name = $.trim($('#building_name').val());
+            var customer_name = $.trim($('#customer_name').val());
+            var phone = $.trim($('#phone').val());
+            var address = $.trim($('#address').val());
 
-            var floor_name = $.trim($('#floor_name').val());
-
-            var flat_name = $.trim($('#flat_name').val());
-
-            var room_name = $.trim($('#room_name').val());
-
-            var seat_name = $.trim($('#seat_name').val());
-
-            var seat_price = $.trim($('#seat_price').val());
 
             if (building_name == 0 || building_name <= 0) {
                 toastr.warning(" Please Select building name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                 return false;
-            } else if (floor_name == 0 || floor_name <= 0) {
-                toastr.warning(" Please Select floor name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
+            } else if (customer_name ==='') {
+                toastr.warning(" Please enter customer name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                 return false;
-            } else if (flat_name === '' || flat_name == 0) {
-                toastr.warning(" Please Select flat name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
+            } else if (phone ==='') {
+                toastr.warning(" Please enter customer phone no!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                 return false;
-            } else if (room_name === '' || room_name == 0) {
-                toastr.warning(" Please Select room name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
-                return false;
-            } else if (seat_name === '') {
-                toastr.warning(" Please enter seat name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
-                return false;
-            } else if (seat_price === '' || seat_price <= 0) {
-                toastr.warning(" Please enter seat Price!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
+            } else if (address ==='') {
+                toastr.warning(" Please enter customer address!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                 return false;
             } else {
                 ajaxSave();
@@ -228,15 +241,15 @@
             }
         });
         $.ajax({
-            url: "{{ route('crm.seats.store') }}",
+            url: "{{ route('crm.customers.store') }}",
             type: 'post',
             dataType: "json",
             cache: false,
             data: $('form').serialize(),
             beforeSend: function () {
-                var building_name = $.trim($('#building_name').val());
-                if (building_name == "" || building_name == null) {
-                    toastr.warning(" Please enter building name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
+                var customer_name = $.trim($('#customer_name').val());
+                if (customer_name == "" || customer_name == null) {
+                    toastr.warning(" Please enter customer name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                     return false;
                 }
             },
@@ -245,13 +258,23 @@
                     $(".print-success-msg").css('display', 'block');
                     $(".print-success-msg").html(result.message);
                     $('#building_name').val(null).trigger('change');
-                    $('#floor_name').val(null).trigger('change');
-                    $('#flat_name').val(null).trigger('change');
-                    $('#room_name').val(null).trigger('change');
-                    $('#seat_name').val('');
+                    $('#customer_name').val('');
+                    $('#phone').val('');
+                    $('#address').val('');
+                    $('#nid').val('');
+                    $('#email').val('');
+                    $('#guardian_name').val('');
+                    $('#gphone').val('');
+                    $('#gender').val(null).trigger('change');
+                    $('#religion').val(null).trigger('change');
+                    $('#marital_status').val(null).trigger('change');
+                    $('#profession').val(null).trigger('change');
+                    $('#relation').val(null).trigger('change');
+                    alartMessage(true,result.message);
                     flashMessage('success');
                 } else {
                     printErrorMsg(result.data);
+                    alartMessage(false,result.message);
                     flashMessage('error');
                 }
             },
@@ -271,6 +294,18 @@
         $.each(msg, function (key, value) {
             $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
         });
+    }
+
+    function alartMessage(success,message)
+    {
+        if(success===true)
+        {
+            toastr.success(message, 'Message <i class="fa fa-bell faa-ring animated"></i>');
+        }
+        else
+        {
+            toastr.error(message, 'Message <i class="fa fa-bell faa-ring animated"></i>');
+        }
     }
 
     function flashMessage(value = 'success') {

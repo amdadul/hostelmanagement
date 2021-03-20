@@ -12,4 +12,9 @@ class Building extends Model
     {
         return $this->hasMany(Flat::class);
     }
+
+    public function customer()
+    {
+        return $this->hasMany(Customer::class);
+    }
 }

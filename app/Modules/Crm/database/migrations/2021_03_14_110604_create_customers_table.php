@@ -15,6 +15,8 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('building_id')->nullable();
+            $table->foreign('building_id')->references('id')->on('buildings');
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('phone_no');
@@ -25,6 +27,7 @@ class CreateCustomersTable extends Migration
             $table->string('relation_with_guardian')->nullable();
             $table->string('religion')->nullable();
             $table->string('marital_status');
+            $table->string('gender');
             $table->string('profession');
             $table->tinyInteger('status')->default(1);
             $table->unsignedBigInteger('created_by')->nullable();
