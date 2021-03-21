@@ -34,9 +34,9 @@
                     </li>
                     <li> <a class="menu-item" href="#" data-i18n="Horizontal"><i class="fa fa-money" aria-hidden="true"></i> Accounts</a>
                         <ul class="menu-content">
-                            <li><a class="menu-item" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/html/ltr/horizontal-menu-template" data-i18n="Classic">Classic</a>
+                            <li><a class="menu-item" href="{{route('accounts.expense-types.index')}}" data-i18n="Classic">Expense Type</a>
                             </li>
-                            <li><a class="menu-item" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/html/ltr/horizontal-menu-template-nav" data-i18n="Nav Dark">Nav Dark</a>
+                            <li><a class="menu-item" href="{{route('accounts.asset-types.index')}}" data-i18n="Nav Dark">Assets Type</a>
                             </li>
                         </ul>
                     </li>

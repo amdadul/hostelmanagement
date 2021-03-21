@@ -12,7 +12,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title" id="basic-layout-card-center">Create a Expense type</h4>
+                <h4 class="card-title" id="basic-layout-card-center">Create a Asset type</h4>
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                 <div class="heading-elements">
                     <ul class="list-inline mb-0">
@@ -30,9 +30,9 @@
                         <div class="form-body">
 
                             <div class="form-group">
-                                <label for="root_id"> Root Expense type <span class="required text-danger">*</span></label>
+                                <label for="root_id"> Root Asset type <span class="required text-danger">*</span></label>
                                 <select class="select2 form-control @error('root_id') is-invalid @enderror" id="root_id" name="root_id" required>
-                                        <option value="0">Select Expense type</option>
+                                        <option value="0">Select Asset type</option>
                                         @foreach($rootTypes as $rootType)
                                                 <option value="{{$rootType->id}}" {{ old('root_id')==$rootType->id?'selected':'' }}>{{$rootType->name}}</option>
                                         @endforeach
@@ -42,9 +42,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="name">Expense Type Name <span class="required text-danger">*</span></label>
+                                <label for="name">Asset Type Name <span class="required text-danger">*</span></label>
                                 <input id="name" class="form-control @error('name') is-invalid @enderror"
-                                       placeholder="Expense Type Name" name="name" value="{{old('name')?old('name'):''}}" />
+                                       placeholder="Asset Type Name" name="name" value="{{old('name')?old('name'):''}}" />
                                 @error('name')
                                 <div class="help-block text-danger">{{ $message }} </div> @enderror
                             </div>
@@ -109,7 +109,7 @@
             }
         });
         $.ajax({
-            url: "{{ route('accounts.expense-types.store') }}",
+            url: "{{ route('accounts.asset-types.store') }}",
             type: 'post',
             dataType: "json",
             cache: false,
