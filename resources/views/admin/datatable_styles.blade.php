@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/vendors.css') }}">
+
 <link rel="stylesheet" type="text/css"
       href="{{ asset('app-assets/vendors/css/tables/datatable/datatables.min.css') }}">
 <link rel="stylesheet" type="text/css"

@@ -167,9 +167,15 @@
                         </ul>
                     </li>
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                            <div class="avatar avatar-online"><img src="{{ asset('app-assets/images/portrait/small/avatar-s-1.png')}}" alt="avatar"><i></i></div><span class="user-name">John Doe</span></a>
+                            <div class="avatar avatar-online"><img src="{{ asset('app-assets/images/portrait/small/avatar-s-1.png')}}" alt="avatar"><i></i></div><span class="user-name">{{auth()->user()->name}}</span></a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="user-profile.html"><i class="feather icon-user"></i> Edit Profile</a><a class="dropdown-item" href="app-email.html"><i class="feather icon-mail"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="feather icon-check-square"></i> Task</a><a class="dropdown-item" href="app-chat.html"><i class="feather icon-message-square"></i> Chats</a>
-                            <div class="dropdown-divider"></div><a class="dropdown-item" href="login-with-bg-image.html"><i class="feather icon-power"></i> Logout</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+                            </a>
+                            <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
                         </div>
                     </li>
                 </ul>

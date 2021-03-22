@@ -215,7 +215,7 @@
             </li>
             <li class=" nav-item"><a href="project-summary.html"><i class="feather icon-airplay"></i><span class="menu-title" data-i18n="Project Summary">Project Summary</span></a>
             </li>
-            <li class=" nav-item"><a href="#"><i class="feather icon-file-text"></i><span class="menu-title" data-i18n="Invoice">Invoice</span></a>
+            <li class=" nav-item"><a href="#"><span class="menu-title" data-i18n="Invoice">Invoice</span></a>
                 <ul class="menu-content">
                     <li><a class="menu-item" href="invoice-list.html" data-i18n="Invoice List">Invoice List</a>
                     </li>
@@ -227,7 +227,7 @@
                     </li>
                 </ul>
             </li>
-            <li class=" nav-item"><a href="#"><i class="feather icon-plus-square"></i><span class="menu-title" data-i18n="Calender">Calender</span></a>
+            <li class=" nav-item"><a href="#"><span class="menu-title" data-i18n="Calender">Calender</span></a>
                 <ul class="menu-content">
                     <li><a class="menu-item" href="full-calender-basic.html" data-i18n="Full Calender Basic">Full Calender Basic</a>
                     </li>

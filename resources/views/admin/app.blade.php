@@ -15,7 +15,7 @@
     <link rel="apple-touch-icon" href="{{asset('app-assets/images/ico/apple-icon-120.png')}}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/vendors.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/vendors/css/vendors.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/forms/selects/select2.min.css')}}">
 
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/bootstrap.min.css')}}">
@@ -30,7 +30,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/vertical-timeline.min.css')}}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/extensions/toastr.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/plugins/extensions/toastr.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/app-assets/css/plugins/extensions/toastr.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
     @stack('styles')
@@ -75,7 +75,7 @@
 <script src="{{asset('app-assets/js/core/app.min.js')}}"></script>
 <script src="{{asset('app-assets/js/scripts/customizer.min.js')}}"></script>
 <script src="{{asset('app-assets/js/scripts/cards/card-statistics.min.js')}}"></script>
-<script src="{{ asset('app-assets/vendors/js/extensions/toastr.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app-assets/vendors/js/extensions/toastr.min.js') }}"></script>
 
 <script src="{{ asset('app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
 <script src="{{ asset('app-assets/js/scripts/forms/select/form-select2.min.js')}}"></script>
