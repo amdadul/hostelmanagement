@@ -18,6 +18,7 @@ class CreateAssetsTable extends Migration
             $table->unsignedBigInteger('assets_type')->nullable();
             $table->foreign('assets_type')->references('id')->on('assets_types');
             $table->string('description')->nullable();
+            $table->integer('qty')->nullable();
             $table->double('depreciation')->default(0);
             $table->tinyInteger('life_time')->default(0);
             $table->unsignedBigInteger('created_by')->nullable();

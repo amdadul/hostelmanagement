@@ -10,7 +10,7 @@ class Assets extends Model
 
     public function assetsType()
     {
-        $this->belongsTo(AssetsType::class);
+        return $this->belongsTo(AssetsType::class,'assets_type');
     }
 
 }

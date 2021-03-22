@@ -21,4 +21,13 @@ Route::group(['middleware' => ['auth:web']], function () {
         Route::post('/{id}/update', 'AssetsTypeController@update')->name('accounts.asset-types.update');
         Route::delete('/{id}/delete', 'AssetsTypeController@delete')->name('accounts.asset-types.delete');
     });
+
+    Route::group(['prefix' => 'admin/accounts/assets'], function () {
+        Route::get('/', 'AssetsController@index')->name('accounts.assets.index');
+        Route::get('/create', 'AssetsController@create')->name('accounts.assets.create');
+        Route::post('/store', 'AssetsController@store')->name('accounts.assets.store');
+        Route::get('/{id}/edit', 'AssetsController@edit')->name('accounts.assets.edit');
+        Route::post('/{id}/update', 'AssetsController@update')->name('accounts.assets.update');
+        Route::delete('/{id}/delete', 'AssetsController@delete')->name('accounts.assets.delete');
+    });
 });
