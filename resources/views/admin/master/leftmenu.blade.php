@@ -2,43 +2,42 @@
 <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" navigation-header"><span>General</span><i class=" feather icon-minus" data-toggle="tooltip" data-placement="right" data-original-title="General"></i>
+
+            <li class="{{request()->routeIs('admin')?'active':''}} nav-item"><a href="{{ route('admin') }}"><i class="fa fa-tachometer" aria-hidden="true"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
             </li>
-            <li class="active nav-item"><a href="{{ route('admin') }}"><i class="fa fa-tachometer" aria-hidden="true"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span><span class="badge badge badge-primary badge-pill float-right mr-2">3</span></a>
-            </li>
-            <li class=" nav-item"><a href="#"><i class="fa fa-cogs" aria-hidden="true"></i><span class="menu-title" data-i18n="Templates">Configuration</span></a>
+            <li class="{{request()->routeIs('config*')?'active':''}} nav-item"><a href="#"><i class="fa fa-cogs" aria-hidden="true"></i><span class="menu-title" data-i18n="Templates">Configuration</span></a>
                 <ul class="menu-content">
-                    <li> <a class="menu-item" href="#" data-i18n="Vertical"><i class="fa fa-th-large" aria-hidden="true"></i> Software Config</a>
+                    <li class="{{request()->routeIs('config*')?'active':''}}"> <a class="menu-item" href="#" data-i18n="Vertical"><i class="fa fa-th-large" aria-hidden="true"></i> Software Config</a>
                         <ul class="menu-content">
-                            <li><a class="menu-item" href="{{route('config.lookups.index')}}" data-i18n="Modern Menu">Lookups</a>
+                            <li class="{{request()->routeIs('config.lookups*')?'active':''}}"><a class="menu-item" href="{{route('config.lookups.index')}}" data-i18n="Modern Menu">Lookups</a>
                             </li>
-                            <li><a class="menu-item" href="{{route('config.settings.index')}}" data-i18n="Collapsed Menu">Settings</a>
+                            <li class="{{request()->routeIs('config.settings*')?'active':''}}"><a class="menu-item" href="{{route('config.settings.index')}}" data-i18n="Collapsed Menu">Settings</a>
                             </li>
                         </ul>
                     </li>
                     <li><a class="menu-item" href="#" data-i18n="Vertical"><i class="fa fa-building" aria-hidden="true"></i> CRM</a>
                         <ul class="menu-content">
-                            <li><a class="menu-item" href="{{route('crm.buildings.index')}}" data-i18n="Modern Menu">Buildings</a>
+                            <li class="{{request()->routeIs('crm.buildings*')?'active':''}}"><a class="menu-item" href="{{route('crm.buildings.index')}}" data-i18n="Modern Menu">Buildings</a>
                             </li>
-                            <li><a class="menu-item" href="{{route('crm.floors.index')}}" data-i18n="Collapsed Menu">Floors</a>
+                            <li class="{{request()->routeIs('crm.floors*')?'active':''}}"><a class="menu-item" href="{{route('crm.floors.index')}}" data-i18n="Collapsed Menu">Floors</a>
                             </li>
-                            <li><a class="menu-item" href="{{route('crm.flats.index')}}" data-i18n="Semi Light">Flats</a>
+                            <li class="{{request()->routeIs('crm.flats*')?'active':''}}"><a class="menu-item" href="{{route('crm.flats.index')}}" data-i18n="Semi Light">Flats</a>
                             </li>
-                            <li><a class="menu-item" href="{{route('crm.rooms.index')}}" data-i18n="Semi Dark">Rooms</a>
+                            <li class="{{request()->routeIs('crm.rooms*')?'active':''}}"><a class="menu-item" href="{{route('crm.rooms.index')}}" data-i18n="Semi Dark">Rooms</a>
                             </li>
-                            <li><a class="menu-item" href="{{route('crm.seats.index')}}" data-i18n="Nav Dark">Seats</a>
+                            <li class="{{request()->routeIs('crm.seats*')?'active':''}}"><a class="menu-item" href="{{route('crm.seats.index')}}" data-i18n="Nav Dark">Seats</a>
                             </li>
-                            <li><a class="menu-item" href="{{route('crm.seat-prices.index')}}" data-i18n="Nav Dark">Seat Prices</a>
+                            <li class="{{request()->routeIs('crm.seat-prices*')?'active':''}}"><a class="menu-item" href="{{route('crm.seat-prices.index')}}" data-i18n="Nav Dark">Seat Prices</a>
                             </li>
                         </ul>
                     </li>
                     <li> <a class="menu-item" href="#" data-i18n="Horizontal"><i class="fa fa-money" aria-hidden="true"></i> Accounts</a>
                         <ul class="menu-content">
-                            <li><a class="menu-item" href="{{route('accounts.expense-types.index')}}" data-i18n="Classic">Expense Type</a>
+                            <li class="{{request()->routeIs('accounts.expense-types*')?'active':''}}"><a class="menu-item" href="{{route('accounts.expense-types.index')}}" data-i18n="Classic">Expense Type</a>
                             </li>
-                            <li><a class="menu-item" href="{{route('accounts.asset-types.index')}}" data-i18n="Nav Dark">Assets Type</a>
+                            <li class="{{request()->routeIs('accounts.asset-types*')?'active':''}}"><a class="menu-item" href="{{route('accounts.asset-types.index')}}" data-i18n="Nav Dark">Assets Type</a>
                             </li>
-                            <li><a class="menu-item" href="{{route('accounts.assets.index')}}" data-i18n="Nav Dark">Assets</a>
+                            <li class="{{request()->routeIs('accounts.assets*')?'active':''}}"><a class="menu-item" href="{{route('accounts.assets.index')}}" data-i18n="Nav Dark">Assets</a>
                             </li>
                         </ul>
                     </li>
@@ -46,7 +45,7 @@
             </li>
             <li class=" nav-item"><a href="#"><i class="fa fa-users" aria-hidden="true"></i><span class="menu-title" data-i18n="Layouts">CRM</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item" href="{{route('crm.customers.index')}}" data-i18n="Page Layouts">Customer</a>
+                    <li class="{{request()->routeIs('crm.customers*')?'active':''}}"><a class="menu-item" href="{{route('crm.customers.index')}}" data-i18n="Page Layouts">Customer</a>
                     </li>
                     <li><a class="menu-item" href="#" data-i18n="Navbars">Navbars</a>
                         <ul class="menu-content">
