@@ -8,6 +8,9 @@ class Room extends Model
 {
     protected $guarded = [];
 
+    const AVAILABLE = 1;
+    const BOOKED = 0;
+
     public function flat()
     {
         return $this->belongsTo(Flat::class);

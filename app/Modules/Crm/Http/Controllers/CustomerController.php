@@ -125,6 +125,71 @@ class CustomerController extends Controller
         return $this->responseJson(false, 200, "Customer updated Successfully.");
     }
 
+    public function getCustomerByName(Request $request): ?JsonResponse
+    {
+        $response = array();
+        if ($request->has('search')) {
+            $search = trim($request->search);
+            $data = new Customer();
+            $data = $data->select('id', 'name', 'building_id', 'phone_no');
+            if ($search != '') {
+                $data = $data->where('name', 'like', '%' . $search . '%');
+            }
+            if ($request->has('building_id')) {
+                $building_id = trim($request->building_id);
+                if ($building_id > 0) {
+                    $data = $data->where('building_id', '=', $building_id);
+                }
+            }
+            $data = $data->limit(20);
+            $data = $data->orderby('name', 'asc');
+            $data = $data->get();
+            if (!$data->isEmpty()) {
+                foreach ($data as $dt) {
+                    $response[] = array("value" => $dt->id, "label" => $dt->name, 'name' => $dt->name, 'building_id' => $dt->building_id, 'phone_no' => $dt->phone_no);
+                }
+            } else {
+                $response[] = array("value" => '', "label" => 'No data found!', 'name' => '',  'building_id' => '', 'phone_no' => '');
+            }
+        } else {
+            $response[] = array("value" => '', "label" => 'No data found!', 'name' => '', 'building_id' => '', 'phone_no' => '');
+        }
+        return response()->json($response);
+    }
+
+
+    public function getCustomerByPhone(Request $request): ?JsonResponse
+    {
+        $response = array();
+        if ($request->has('search')) {
+            $search = trim($request->search);
+            $data = new Customer();
+            $data = $data->select('id', 'name', 'building_id', 'phone_no');
+            if ($search != '') {
+                $data = $data->where('phone_no', 'like', '%' . $search . '%');
+            }
+            if ($request->has('building_id')) {
+                $building_id = trim($request->building_id);
+                if ($building_id > 0) {
+                    $data = $data->where('building_id', '=', $building_id);
+                }
+            }
+            $data = $data->limit(20);
+            $data = $data->orderby('name', 'asc');
+            $data = $data->get();
+            if (!$data->isEmpty()) {
+                foreach ($data as $dt) {
+                    $response[] = array("value" => $dt->id, "label" => $dt->name, 'name' => $dt->name, 'building_id' => $dt->building_id, 'phone_no' => $dt->phone_no);
+                }
+            } else {
+                $response[] = array("value" => '', "label" => 'No data found!', 'name' => '',  'building_id' => '', 'phone_no' => '');
+            }
+        } else {
+            $response[] = array("value" => '', "label" => 'No data found!', 'name' => '', 'building_id' => '', 'phone_no' => '');
+        }
+        return response()->json($response);
+    }
+
     public function delete($id)
     {
         $data = Customer::find($id);

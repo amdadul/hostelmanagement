@@ -7,6 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\DataTables\\AssetTypeDataTable' => $baseDir . '/app/DataTables/AssetTypeDataTable.php',
+    'App\\DataTables\\AssetsDataTable' => $baseDir . '/app/DataTables/AssetsDataTable.php',
     'App\\DataTables\\BuildingsDataTable' => $baseDir . '/app/DataTables/BuildingsDataTable.php',
     'App\\DataTables\\CustomersDataTable' => $baseDir . '/app/DataTables/CustomersDataTable.php',
     'App\\DataTables\\ExpenseTypeDataTable' => $baseDir . '/app/DataTables/ExpenseTypeDataTable.php',
@@ -14,6 +16,7 @@ return array(
     'App\\DataTables\\FloorsDataTable' => $baseDir . '/app/DataTables/FloorsDataTable.php',
     'App\\DataTables\\LookupsDataTable' => $baseDir . '/app/DataTables/LookupsDataTable.php',
     'App\\DataTables\\RoomsDataTable' => $baseDir . '/app/DataTables/RoomsDataTable.php',
+    'App\\DataTables\\SeatBookingDataTable' => $baseDir . '/app/DataTables/SeatBookingDataTable.php',
     'App\\DataTables\\SeatPricesDataTable' => $baseDir . '/app/DataTables/SeatPricesDataTable.php',
     'App\\DataTables\\SeatsDataTable' => $baseDir . '/app/DataTables/SeatsDataTable.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
@@ -81,6 +84,7 @@ return array(
     'App\\Modules\\Crm\\Models\\Room' => $baseDir . '/app/Modules/Crm/Models/Room.php',
     'App\\Modules\\Crm\\Models\\Seat' => $baseDir . '/app/Modules/Crm/Models/Seat.php',
     'App\\Modules\\Crm\\Models\\SeatBooking' => $baseDir . '/app/Modules/Crm/Models/SeatBooking.php',
+    'App\\Modules\\Crm\\Models\\SeatBookingDetails' => $baseDir . '/app/Modules/Crm/Models/SeatBookingDetails.php',
     'App\\Modules\\Crm\\Models\\SeatPrice' => $baseDir . '/app/Modules/Crm/Models/SeatPrice.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

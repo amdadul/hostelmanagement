@@ -69,6 +69,12 @@ class SeatPriceController extends Controller
         }
     }
 
+    public function getPriceBySeat(Request $request):?jsonResponse
+    {
+        $data = SeatPrice::where('seat_id','=',$request->seat_id)->where('status','=',1)->orderBy('id','desc')->first();
+        return response()->json($data);
+    }
+
     public function delete($id)
     {
         $data = SeatPrice::find($id);

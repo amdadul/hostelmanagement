@@ -17,12 +17,13 @@ class CreateMoneyReceiptsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('max_sl_no');
             $table->string('voucher_no')->nullable();
+            $table->integer('receipt_type');
             $table->unsignedBigInteger('seat_id');
             $table->foreign('seat_id')->references('id')->on('seats');
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customers');
-            $table->string('collection_type');
-            $table->string('bank_id')->nullable();
+            $table->tinyInteger('collection_type');
+            $table->tinyInteger('bank_id')->nullable();
             $table->string('cheque_no')->nullable();
             $table->date('cheque_date')->nullable();
             $table->double('discount')->nullable();

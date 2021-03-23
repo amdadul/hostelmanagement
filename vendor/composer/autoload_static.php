@@ -626,6 +626,8 @@ class ComposerStaticInit7819d63783fd8878154fb046b55d1df6
 
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\DataTables\\AssetTypeDataTable' => __DIR__ . '/../..' . '/app/DataTables/AssetTypeDataTable.php',
+        'App\\DataTables\\AssetsDataTable' => __DIR__ . '/../..' . '/app/DataTables/AssetsDataTable.php',
         'App\\DataTables\\BuildingsDataTable' => __DIR__ . '/../..' . '/app/DataTables/BuildingsDataTable.php',
         'App\\DataTables\\CustomersDataTable' => __DIR__ . '/../..' . '/app/DataTables/CustomersDataTable.php',
         'App\\DataTables\\ExpenseTypeDataTable' => __DIR__ . '/../..' . '/app/DataTables/ExpenseTypeDataTable.php',
@@ -633,6 +635,7 @@ class ComposerStaticInit7819d63783fd8878154fb046b55d1df6
         'App\\DataTables\\FloorsDataTable' => __DIR__ . '/../..' . '/app/DataTables/FloorsDataTable.php',
         'App\\DataTables\\LookupsDataTable' => __DIR__ . '/../..' . '/app/DataTables/LookupsDataTable.php',
         'App\\DataTables\\RoomsDataTable' => __DIR__ . '/../..' . '/app/DataTables/RoomsDataTable.php',
+        'App\\DataTables\\SeatBookingDataTable' => __DIR__ . '/../..' . '/app/DataTables/SeatBookingDataTable.php',
         'App\\DataTables\\SeatPricesDataTable' => __DIR__ . '/../..' . '/app/DataTables/SeatPricesDataTable.php',
         'App\\DataTables\\SeatsDataTable' => __DIR__ . '/../..' . '/app/DataTables/SeatsDataTable.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -700,6 +703,7 @@ class ComposerStaticInit7819d63783fd8878154fb046b55d1df6
         'App\\Modules\\Crm\\Models\\Room' => __DIR__ . '/../..' . '/app/Modules/Crm/Models/Room.php',
         'App\\Modules\\Crm\\Models\\Seat' => __DIR__ . '/../..' . '/app/Modules/Crm/Models/Seat.php',
         'App\\Modules\\Crm\\Models\\SeatBooking' => __DIR__ . '/../..' . '/app/Modules/Crm/Models/SeatBooking.php',
+        'App\\Modules\\Crm\\Models\\SeatBookingDetails' => __DIR__ . '/../..' . '/app/Modules/Crm/Models/SeatBookingDetails.php',
         'App\\Modules\\Crm\\Models\\SeatPrice' => __DIR__ . '/../..' . '/app/Modules/Crm/Models/SeatPrice.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

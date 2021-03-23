@@ -17,14 +17,12 @@ class CreateSeatBookingsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('max_sl_no');
             $table->string('voucher_no')->nullable();
-            $table->unsignedBigInteger('seat_id');
-            $table->foreign('seat_id')->references('id')->on('seats');
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->date('booking_date');
             $table->date('start_date');
             $table->date('end_date')->nullable();
-            $table->double('price');
+            $table->double('grand_total');
             $table->tinyInteger('status')->default(1);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users');

@@ -17,12 +17,16 @@ class CreateAdvancesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('max_sl_no');
             $table->string('voucher_no')->nullable();
-            $table->unsignedBigInteger('seat_id');
-            $table->foreign('seat_id')->references('id')->on('seats');
+            $table->unsignedBigInteger('booking_id')->nullable();
+            $table->foreign('booking_id')->references('id')->on('seat_bookings');
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->unsignedBigInteger('money_receipt_id')->nullable();
             $table->foreign('money_receipt_id')->references('id')->on('money_receipts');
+            $table->tinyInteger('collection_type');
+            $table->tinyInteger('bank_id')->nullable();
+            $table->string('cheque_no')->nullable();
+            $table->date('cheque_date')->nullable();
             $table->date('date');
             $table->double('amount')->nullable();
             $table->tinyInteger('status')->default(0);

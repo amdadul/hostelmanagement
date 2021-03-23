@@ -58,6 +58,7 @@ Route::group(['middleware' => ['auth:web']], function () {
         Route::get('/create', 'SeatPriceController@create')->name('crm.seat-prices.create');
         Route::post('/store', 'SeatPriceController@store')->name('crm.seat-prices.store');
         Route::get('/{id}/edit', 'SeatPriceController@edit')->name('crm.seat-prices.edit');
+        Route::post('/get-price', 'SeatPriceController@getPriceBySeat')->name('crm.seat-prices.get-price');
         Route::post('/{id}/update', 'SeatPriceController@update')->name('crm.seat-prices.update');
         Route::post('/deactive', 'SeatPriceController@deactive')->name('crm.seat-prices.deactive');
         Route::delete('/{id}/delete', 'SeatPriceController@delete')->name('crm.seat-prices.delete');
@@ -67,8 +68,20 @@ Route::group(['middleware' => ['auth:web']], function () {
         Route::get('/', 'CustomerController@index')->name('crm.customers.index');
         Route::get('/create', 'CustomerController@create')->name('crm.customers.create');
         Route::post('/store', 'CustomerController@store')->name('crm.customers.store');
+        Route::post('/get-by-name', 'CustomerController@getCustomerByName')->name('customer.name.autocomplete');
+        Route::post('/get-by-phone', 'CustomerController@getCustomerByPhone')->name('customer.phone.autocomplete');
         Route::get('/{id}/edit', 'CustomerController@edit')->name('crm.customers.edit');
         Route::post('/{id}/update', 'CustomerController@update')->name('crm.customers.update');
         Route::delete('/{id}/delete', 'CustomerController@delete')->name('crm.customers.delete');
+    });
+
+    Route::group(['prefix' => 'admin/crm/seat-booking'], function () {
+        Route::get('/', 'SeatBookingController@index')->name('crm.seat-booking.index');
+        Route::get('/create', 'SeatBookingController@create')->name('crm.seat-booking.create');
+        Route::post('/store', 'SeatBookingController@store')->name('crm.seat-booking.store');
+        Route::get('/{id}/edit', 'SeatBookingController@edit')->name('crm.seat-booking.edit');
+        Route::get('/{id}/voucher', 'SeatBookingController@voucher')->name('crm.seat-booking.voucher');
+        Route::post('/{id}/update', 'SeatBookingController@update')->name('crm.seat-booking.update');
+        Route::delete('/{id}/delete', 'SeatBookingController@delete')->name('crm.seat-booking.delete');
     });
 });

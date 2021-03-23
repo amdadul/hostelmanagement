@@ -10,6 +10,11 @@ class Advance extends Model
 {
     protected $guarded = [];
 
+    public function maxSlNo(){
+        $maxSn = $this->max('max_sl_no');
+        return $maxSn ? $maxSn + 1 : 1;
+    }
+
     public function seat()
     {
         $this->belongsTo(Seat::class);

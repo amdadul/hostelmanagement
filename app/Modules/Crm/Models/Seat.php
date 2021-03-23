@@ -8,6 +8,24 @@ class Seat extends Model
 {
     protected $guarded = [];
 
+    const AVAILABLE = 1;
+    const BOOKED = 0;
+
+    public static function roomBooked($room_id)
+    {
+        $data = Seat::where('room_id','=',$room_id)->get();
+        $totalSeat = count($data);
+        $totalBooked = 0;
+        foreach ($data as $row)
+        {
+            if($row->status==0)
+            {
+                $totalBooked++;
+            }
+        }
+        return ($totalSeat==$totalBooked)?true:false;
+    }
+
     public function room()
     {
         return $this->belongsTo(Room::class);
