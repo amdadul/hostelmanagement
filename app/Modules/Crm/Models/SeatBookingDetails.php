@@ -14,4 +14,9 @@ class SeatBookingDetails extends Model
     {
         return $this->belongsTo(SeatBooking::class);
     }
+
+    public function seat()
+    {
+        return $this->belongsTo(Seat::class);
+    }
 }

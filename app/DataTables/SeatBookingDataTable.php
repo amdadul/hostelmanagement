@@ -36,6 +36,7 @@ class SeatBookingDataTable extends DataTable
                     <div class='form-group'>
                         <div class='btn-group' role='group' aria-label='Basic example'>
                             <a href='seat-booking/$data->id/edit' class='btn btn-icon btn-secondary'><i class='fa fa-pencil-square-o'></i> Edit</a>
+                            <a href='seat-booking/$data->id/voucher' class='btn btn-icon btn-info'><i class='fa fa-eye'></i> View</a>
                             <button data-remote='seat-booking/$data->id/delete' class='btn btn-icon btn-danger btn-delete'><i class='fa fa-trash-o'></i> Delete</button>
                         </div>
                    </div>";

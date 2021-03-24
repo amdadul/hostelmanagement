@@ -127,7 +127,7 @@ class SeatBookingController extends Controller
                     $advance = new Advance();
                     $maxSlNo = $advance->maxSlNo();
                     $year = Carbon::now()->year;
-                    $invNo = "CH-SC-$year-" . str_pad($maxSlNo, 8, '0', STR_PAD_LEFT);
+                    $invNo = "CH-AP-$year-" . str_pad($maxSlNo, 8, '0', STR_PAD_LEFT);
 
                     $advance->max_sl_no = $maxSlNo;
                     $advance->voucher_no = $invNo;
@@ -167,7 +167,9 @@ class SeatBookingController extends Controller
 
     function voucher($id)
     {
-
+        $pageTitle = 'Seat Booking Voucher';
+        $booking = SeatBooking::find($id);
+        return view('Crm::booking.voucher',compact('pageTitle','booking'));
     }
 
 }

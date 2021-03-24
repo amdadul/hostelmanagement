@@ -8,9 +8,9 @@
     @include('admin.master.flash')
 
     <div class="btn-group" role="group" aria-label="Basic example">
-        <a href="{{ route('crm.invoice.create') }}" class="btn btn-icon btn-secondary"><i class="fa fa-backward"></i> Go
+        <a href="{{ route('crm.seat-booking.create') }}" class="btn btn-icon btn-secondary"><i class="fa fa-backward"></i> Go
             Back</a>
-        <a href="{{ route('crm.invoice.index') }}" class="btn btn-icon btn-secondary"><i class="fa fa-list-ul"></i>
+        <a href="{{ route('crm.seat-booking.index') }}" class="btn btn-icon btn-secondary"><i class="fa fa-list-ul"></i>
             Invoice Manage</a>
         <a href="#" class="btn btn-icon btn-secondary" onclick="printDiv('printableArea')"><i class="fa fa-print"></i>
             Print</a>
@@ -21,24 +21,24 @@
             <div id="invoice-company-details" class="row">
                 <div class="col-md-6 col-sm-12 text-center text-md-left">
                     <div class="media">
-                        <img class="" alt="{{ config('settings.site_name') }}"
-                             title="{{ config('settings.site_name') }}"
-                             src="{{ asset('uploads/'. config('settings.site_logo')) }}"
+                        <img class="" alt=""
+                             title=""
+                             src=""
                              style="height: 80px; width: 80px;">
                         <div class="media-body">
                             <ul class="ml-2 px-0 list-unstyled">
-                                <li class="text-bold-800">{{config('settings.company_name')}}</li>
-                                <li>{{ config('settings.house_no') }}</li>
-                                <li>{{ config('settings.road_no') }}</li>
-                                <li>{{ config('settings.post_code') }}</li>
-                                <li>{{ config('settings.phone') }}</li>
+                                <li class="text-bold-800">City Hostel</li>
+                                <li>71</li>
+                                <li>Purbo Razabazar</li>
+                                <li></li>
+                                <li>+88012345678</li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12 text-center text-md-right">
-                    <h2>INVOICE</h2>
-                    <p class="pb-3"># {{ $invoice->invoice_no }}</p>
+                    <h2>BOOKING VOUCHER</h2>
+                    <p class="pb-3"># {{ $booking->voucher_no }}</p>
                 </div>
             </div>
             <!--/ Invoice Company Details -->
@@ -50,18 +50,22 @@
                 </div>
                 <div class="col-md-6 col-sm-12 text-center text-md-left">
                     <ul class="px-0 list-unstyled">
-                        <li class="text-bold-800">{{ $invoice->customer->name }}</li>
-                        <li>{{ $invoice->customer->address }}</li>
+                        <li class="text-bold-800">{{ $booking->customer->name }}</li>
+                        <li>{{ $booking->customer->address }}</li>
                     </ul>
                 </div>
                 <div class="col-md-6 col-sm-12 text-center text-md-right">
                     <p>
                         <span
-                            class="text-muted">Invoice Date :</span> {{  date("F jS, Y", strtotime($invoice->date)) }}</li>
+                            class="text-muted">Booking Date :</span> {{  date("F jS, Y", strtotime($booking->booking_date)) }}</li>
                     </p>
                     <p>
                         <span
-                            class="text-muted">Terms :</span> {{  $invoice->cash_credit == \App\Modules\Config\Models\Lookup::CASH ? "CASH" : "DUE" }}
+                            class="text-muted">Service Charge Voucher:</span> {{ isset($booking->service_charge->voucher_no)?$booking->service_charge->voucher_no:'N/A' }}
+                    </p>
+                    <p>
+                        <span
+                            class="text-muted">Advance Voucher :</span> {{ isset($booking->advance->voucher_no)?$booking->advance->voucher_no:'N/A' }}
                     </p>
                 </div>
             </div>
@@ -74,51 +78,51 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Item & Description</th>
-                                <th class="text-right">Qty</th>
-                                <th class="text-right">Sell Price</th>
-                                <th class="text-right">Amount</th>
+                                <th>Seat & Description</th>
+                                <th class="text-right">Booking Price</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
                             $salesTotal = 0;
                             ?>
-                            @foreach($invoice->invoiceDetails as $key => $invD)
+                            @foreach($booking->seatBookingDetails as $key => $invD)
                                 <?php
-                                $salesTotal += $invD->row_total;
+                                $salesTotal += $invD->price;
                                 ?>
                                 <tr>
                                     <th scope="row" style="width: 2%;">{{ ++$key }}</th>
                                     <td>
-                                        <p>{{ $invD->product->name }}</p>
-                                        <p class="text-muted">{{ $invD->product->code }}</p>
+                                        <p>Seat : {{ $invD->seat->name }} Room: {{ $invD->seat->room->name }} Flat: {{ $invD->seat->room->flat->name }}</p>
+                                        <p>Floor : {{ $invD->seat->room->flat->floor->name }} Building: {{ $invD->seat->room->flat->floor->building->name }}</p>
                                     </td>
-                                    <td class="text-center">{{ $invD->qty }}</td>
-                                    <td class="text-right">{{ $invD->sell_price }}</td>
-                                    <td class="text-right">{{ $invD->row_total }}</td>
+                                    <td class="text-right">{{ $invD->price }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
+                            <thead>
+                            <tr>
+                                <th colspan="2" class="text-right">Total</th>
+                                <th class="text-right"> <?= number_format($salesTotal, 2) ?></th>
+                            </tr>
+                            </thead>
                         </table>
                     </div>
                 </div>
+                <br>
                 <div class="row">
                     <div class="col-md-7 col-sm-12 text-center text-md-left">
                         <?php
                         $total_mr = 0;
                         ?>
-                        @if($invoice->cash_credit == \App\Modules\Config\Models\Lookup::CASH)
+                        @if($booking->service_charge->collection_type >0 || $booking->advance->collection_type >0 )
                             <p class="lead">Payment Methods:</p>
                             <div class="row">
                                 <div class="col-md-8">
                                     <table class="table table-borderless table-sm">
                                         <tbody>
-                                        <?php
-                                        $mr_info = \App\Modules\Accounting\Models\MoneyReceipt::mrInfo($id);
-                                        $total_mr = \App\Modules\Accounting\Models\MoneyReceipt::totalMrAmountOfInvoice($id);
-                                        ?>
-                                        @if($invoice->collection_type == \App\Modules\Config\Models\Lookup::PAYMENT_CASH)
+
+                                        @if(($booking->service_charge->collection_type?$booking->service_charge->collection_type:$booking->advance->collection_type) == \App\Modules\Config\Models\lookup::PAYMENT_CASH)
                                             <tr>
                                                 <td>Payment Method:</td>
                                                 <td class="text-right">Cash</td>
@@ -127,40 +131,40 @@
                                             <tr>
                                                 <td>Bank name:</td>
                                                 <td class="text-right">
-                                                    {{ \App\Modules\Config\Models\Lookup::item('bank', $mr_info->bank_id) }}
+                                                    {{ \App\Modules\Config\Models\lookup::getLookupByCode('bank',($booking->service_charge->bank_id?$booking->service_charge->bank_id:$booking->advance->bank_id)) }}
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Cheque/Transaction No:</td>
-                                                <td class="text-right">{{ $mr_info->cheque_no }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>MR no:</td>
-                                                <td class="text-right">{{ $mr_info->mr_no }}</td>
+                                                <td class="text-right">{{ ($booking->service_charge->cheque_no?$booking->service_charge->cheque_no:$booking->advance->cheque_no) }}</td>
                                             </tr>
                                         @endif
+                                        <?php
+                                            $paidAmount = (isset($booking->service_charge->amount)?$booking->service_charge->amount:0)+(isset($booking->advance->amount)?$booking->advance->amount:0);
+                                        ?>
                                         </tbody>
+
                                     </table>
                                 </div>
                             </div>
                         @endif
                     </div>
                     <div class="col-md-5 col-sm-12">
-                        <p class="lead">Total due</p>
+                        <p class="lead">Payment History</p>
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody>
                                 <tr>
-                                    <td class="text-bold-800">Total</td>
-                                    <td class="text-bold-800 text-right"> <?= number_format($salesTotal, 2) ?></td>
+                                    <td >Service Charge</td>
+                                    <td class="pink text-right"> <?= number_format((isset($booking->service_charge->amount)?$booking->service_charge->amount:0), 2) ?></td>
                                 </tr>
                                 <tr>
-                                    <td>Payment Made</td>
-                                    <td class="pink text-right">(-) <?= number_format($total_mr, 2) ?></td>
+                                    <td >Advance Payment</td>
+                                    <td class="pink text-right"> <?= number_format((isset($booking->advance->amount)?$booking->advance->amount:0), 2) ?></td>
                                 </tr>
-                                <tr class="bg-grey bg-lighten-4">
-                                    <td class="text-bold-800">Balance Due</td>
-                                    <td class="text-bold-800 text-right"><?= number_format(($salesTotal - $total_mr), 2) ?></td>
+                                <tr>
+                                    <td>Total Payment Made</td>
+                                    <td class="pink text-right"> <?= number_format($paidAmount, 2) ?></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -173,3 +177,15 @@
     </section>
 
 @endsection
+
+@push('scripts')
+    <script>
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
+    </script>
+@endpush

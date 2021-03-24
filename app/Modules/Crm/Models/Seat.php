@@ -26,6 +26,21 @@ class Seat extends Model
         return ($totalSeat==$totalBooked)?true:false;
     }
 
+    public static function roomUnBook($room_id)
+    {
+        $data = Seat::where('room_id','=',$room_id)->get();
+        $totalSeat = count($data);
+        $totalBooked = 0;
+        foreach ($data as $row)
+        {
+            if($row->status==0)
+            {
+                $totalBooked++;
+            }
+        }
+        return ($totalSeat==$totalBooked)?false:true;
+    }
+
     public function room()
     {
         return $this->belongsTo(Room::class);

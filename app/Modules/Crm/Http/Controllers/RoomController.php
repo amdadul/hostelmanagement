@@ -94,4 +94,10 @@ class RoomController extends Controller
         $data = Room::where('flat_id','=',$request->flat_id)->get();
         return response()->json($data);
     }
+
+    public function getAvailableRoomByFlat(Request $request):?jsonResponse
+    {
+        $data = Room::where('flat_id','=',$request->flat_id)->where('status','=',Room::AVAILABLE)->get();
+        return response()->json($data);
+    }
 }

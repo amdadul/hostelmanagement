@@ -16,6 +16,7 @@ class lookup extends Model
     const BANK = 'bank';
     const PROFESSION = 'profession';
     const RELATION = 'relation';
+    const PAYMENT_CASH = 1;
 
     public static function getMaxId($type)
     {

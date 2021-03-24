@@ -85,7 +85,7 @@
                                             <label for="customer_name">Customer Name</label>
                                             <input type="text"
                                                    class="form-control @error('customer_name') is-invalid @enderror"
-                                                   id="customer_name" required>
+                                                   id="customer_name" required autocomplete="off">
                                             <input type="hidden"
                                                    class="form-control @error('customer_id') is-invalid @enderror"
                                                    id="customer_id" name="customer_id" required>
@@ -97,7 +97,7 @@
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="contact_no">Phone no</label>
-                                            <input type="text" class="form-control" id="contact_no" value="">
+                                            <input type="text" class="form-control" id="contact_no" value="" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
@@ -447,7 +447,7 @@
             }
         });
         $.ajax({
-            url: "{{ route('crm.rooms.get-room') }}",
+            url: "{{ route('crm.rooms.get-avail-room') }}",
             type: 'post',
             data: {'flat_id': flat_name},
             success: data => {
@@ -468,7 +468,7 @@
                 }
             });
             $.ajax({
-                url: "{{ route('crm.seats.get-seat') }}",
+                url: "{{ route('crm.seats.get-avail-seat') }}",
                 type: 'post',
                 data: {'room_id': room_name},
                 success: data => {

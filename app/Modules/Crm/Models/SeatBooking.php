@@ -22,12 +22,12 @@ class SeatBooking extends Model
 
     public function service_charge()
     {
-        return $this->belongsTo(ServiceCharge::class);
+        return $this->hasOne(ServiceCharge::class,'booking_id');
     }
 
     public function advance()
     {
-        return $this->belongsTo(Advance::class);
+        return $this->hasOne(Advance::class,'booking_id');
     }
 
     public function customer()
@@ -37,6 +37,6 @@ class SeatBooking extends Model
 
     public function seatBookingDetails()
     {
-        return $this->hasMany(SeatBookingDetails::class);
+        return $this->hasMany(SeatBookingDetails::class,'booking_id');
     }
 }

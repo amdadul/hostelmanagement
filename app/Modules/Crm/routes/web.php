@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth:web']], function () {
         Route::get('/{id}/edit', 'RoomController@edit')->name('crm.rooms.edit');
         Route::post('/{id}/update', 'RoomController@update')->name('crm.rooms.update');
         Route::post('/get-room', 'RoomController@getRoomByFlat')->name('crm.rooms.get-room');
+        Route::post('/get-avail-room', 'RoomController@getAvailableRoomByFlat')->name('crm.rooms.get-avail-room');
         Route::delete('/{id}/delete', 'RoomController@delete')->name('crm.rooms.delete');
     });
 
@@ -49,6 +50,7 @@ Route::group(['middleware' => ['auth:web']], function () {
         Route::post('/store', 'SeatController@store')->name('crm.seats.store');
         Route::get('/{id}/edit', 'SeatController@edit')->name('crm.seats.edit');
         Route::post('/get-seat', 'SeatController@getSeatByRoom')->name('crm.seats.get-seat');
+        Route::post('/get-avail-seat', 'SeatController@getAvaiableSeatByRoom')->name('crm.seats.get-avail-seat');
         Route::post('/{id}/update', 'SeatController@update')->name('crm.seats.update');
         Route::delete('/{id}/delete', 'SeatController@delete')->name('crm.seats.delete');
     });

@@ -47,31 +47,7 @@
                 <ul class="menu-content">
                     <li class="{{request()->routeIs('crm.customers*')?'active':''}}"><a class="menu-item" href="{{route('crm.customers.index')}}" data-i18n="Page Layouts">Customer</a>
                     </li>
-                    <li><a class="menu-item" href="#" data-i18n="Navbars">Navbars</a>
-                        <ul class="menu-content">
-                            <li><a class="menu-item" href="navbar-light.html" data-i18n="Navbar Light">Navbar Light</a>
-                            </li>
-                            <li><a class="menu-item" href="navbar-dark.html" data-i18n="Navbar Dark">Navbar Dark</a>
-                            </li>
-                            <li><a class="menu-item" href="navbar-semi-dark.html" data-i18n="Navbar Semi Dark">Navbar Semi Dark</a>
-                            </li>
-                            <li><a class="menu-item" href="navbar-brand-center.html" data-i18n="Brand Center">Brand Center</a>
-                            </li>
-                            <li><a class="menu-item" href="navbar-fixed-top.html" data-i18n="Fixed Top">Fixed Top</a>
-                            </li>
-                            <li><a class="menu-item" href="#" data-i18n="Hide on Scroll">Hide on Scroll</a>
-                                <ul class="menu-content">
-                                    <li><a class="menu-item" href="navbar-hide-on-scroll-top.html" data-i18n="Hide on Scroll Top">Hide on Scroll Top</a>
-                                    </li>
-                                    <li><a class="menu-item" href="navbar-hide-on-scroll-bottom.html" data-i18n="Hide on Scroll Bottom">Hide on Scroll Bottom</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a class="menu-item" href="navbar-components.html" data-i18n="Navbar Components">Navbar Components</a>
-                            </li>
-                            <li><a class="menu-item" href="navbar-styling.html" data-i18n="Navbar Styling">Navbar Styling</a>
-                            </li>
-                        </ul>
+                    <li class="{{request()->routeIs('crm.seat-booking*')?'active':''}}"><a class="menu-item" href="{{route('crm.seat-booking.index')}}" data-i18n="Navbars">Seat Booking</a>
                     </li>
                     <li><a class="menu-item" href="#" data-i18n="Vertical Nav">Vertical Nav</a>
                         <ul class="menu-content">

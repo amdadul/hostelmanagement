@@ -130,4 +130,10 @@ class SeatController extends Controller
         $data = Seat::where('room_id','=',$request->room_id)->get();
         return response()->json($data);
     }
+
+    public function getAvaiableSeatByRoom(Request $request):?jsonResponse
+    {
+        $data = Seat::where('room_id','=',$request->room_id)->where('status','=',Seat::AVAILABLE)->get();
+        return response()->json($data);
+    }
 }
