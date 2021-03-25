@@ -31,38 +31,52 @@
 
                                 <div class="form-group">
                                     <label for="building_name">Building Name <span class="required text-danger">*</span></label>
-                                    <select class="select2 form-control @error('building_name') is-invalid @enderror" id="building_name" name="building_name" required>
+                                    <select class="select2 form-control @error('building_name') is-invalid @enderror"
+                                            id="building_name" name="building_name" required>
                                         <option value="0">Select Building Name</option>
                                         @foreach($buildings as $building)
-                                            <option value="{{$building->id}}" {{ (old('building_name')?old('building_name'):$data->building_id)==$building->id?'selected':'' }}>{{$building->name}}</option>
+                                            <option
+                                                value="{{$building->id}}" {{ (old('building_name')?old('building_name'):$data->building_id)==$building->id?'selected':'' }}>{{$building->name}}</option>
                                         @endforeach
                                     </select>
                                     @error('building_name')
                                     <div class="help-block text-danger">{{ $message }} </div> @enderror
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="customer_name">Customer Name <span class="required text-danger">*</span></label>
-                                    <input id="customer_name" class="form-control @error('customer_name') is-invalid @enderror"
-                                           placeholder="Customer Name" name="customer_name" value="{{old('customer_name')?old('customer_name'):$data->name}}" required/>
-                                    @error('customer_name')
-                                    <div class="help-block text-danger">{{ $message }} </div> @enderror
-                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="customer_name">Customer Name <span class="required text-danger">*</span></label>
+                                            <input id="customer_name"
+                                                   class="form-control @error('customer_name') is-invalid @enderror"
+                                                   placeholder="Customer Name" name="customer_name"
+                                                   value="{{old('customer_name')?old('customer_name'):$data->name}}"
+                                                   required/>
+                                            @error('customer_name')
+                                            <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                        </div>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="email">Customer Email </label>
-                                    <input id="email" class="form-control @error('email') is-invalid @enderror"
-                                           placeholder="Customer Email" name="email" value="{{old('email')?old('email'):$data->email}}" />
-                                    @error('email')
-                                    <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="email">Customer Email </label>
+                                            <input id="email" class="form-control @error('email') is-invalid @enderror"
+                                                   placeholder="Customer Email" name="email"
+                                                   value="{{old('email')?old('email'):$data->email}}"/>
+                                            @error('email')
+                                            <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="phone">Customer Phone <span class="required text-danger">*</span></label>
+                                            <label for="phone">Customer Phone <span
+                                                    class="required text-danger">*</span></label>
                                             <input id="phone" class="form-control @error('phone') is-invalid @enderror"
-                                                   placeholder="Customer Phone" name="phone" value="{{old('phone')?old('phone'):$data->phone_no}}" required/>
+                                                   placeholder="Customer Phone" name="phone"
+                                                   value="{{old('phone')?old('phone'):$data->phone_no}}" required/>
                                             @error('phone')
                                             <div class="help-block text-danger">{{ $message }} </div> @enderror
                                         </div>
@@ -70,10 +84,64 @@
 
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="nid">NID/ Birth Certificate No  <span class="required text-danger">*</span></label>
+                                            <label for="nid">NID/ Birth Certificate No <span
+                                                    class="required text-danger">*</span></label>
                                             <input id="nid" class="form-control @error('nid') is-invalid @enderror"
-                                                   placeholder="NID/ Birth Certificate No" name="nid" value="{{old('nid')?old('nid'):$data->nid}}" required/>
+                                                   placeholder="NID/ Birth Certificate No" name="nid"
+                                                   value="{{old('nid')?old('nid'):$data->nid}}" required/>
                                             @error('nid')
+                                            <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="fathers_name">Fathers Name</label>
+                                            <input id="fathers_name"
+                                                   class="form-control @error('fathers_name') is-invalid @enderror"
+                                                   placeholder="Fathers Name" name="fathers_name"
+                                                   value="{{old('fathers_name')?old('fathers_name'):$data->fathers_name}}"/>
+                                            @error('fathers_name')
+                                            <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="fathers_phone">Fathers Phone No </label>
+                                            <input id="fathers_phone"
+                                                   class="form-control @error('fathers_phone') is-invalid @enderror"
+                                                   placeholder="Fathers Phone No" name="fathers_phone"
+                                                   value="{{old('fathers_phone')?old('fathers_phone'):$data->fathers_phone}}"/>
+                                            @error('fathers_phone')
+                                            <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="mothers_name">Mothers Name</label>
+                                            <input id="mothers_name"
+                                                   class="form-control @error('mothers_name') is-invalid @enderror"
+                                                   placeholder="Mothers Name" name="mothers_name"
+                                                   value="{{old('mothers_name')?old('mothers_name'):$data->mothers_name}}"/>
+                                            @error('mothers_name')
+                                            <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="mothers_phone">Mothers Phone No </label>
+                                            <input id="mothers_phone"
+                                                   class="form-control @error('mothers_phone') is-invalid @enderror"
+                                                   placeholder="Mothers Phone No" name="mothers_phone"
+                                                   value="{{old('mothers_phone')?old('mothers_phone'):$data->mothers_phone}}"/>
+                                            @error('mothers_phone')
                                             <div class="help-block text-danger">{{ $message }} </div> @enderror
                                         </div>
                                     </div>
@@ -82,7 +150,8 @@
                                 <div class="form-group">
                                     <label for="address">Address <span class="required text-danger">*</span></label>
                                     <textarea id="address" class="form-control @error('address') is-invalid @enderror"
-                                              placeholder="Address" name="address" required>{{old('address')?old('address'):$data->address}}</textarea>
+                                              placeholder="Address" name="address"
+                                              required>{{old('address')?old('address'):$data->address}}</textarea>
                                     @error('address')
                                     <div class="help-block text-danger">{{ $message }} </div> @enderror
                                 </div>
@@ -90,11 +159,40 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="gender">Gender <span class="required text-danger">*</span></label>
-                                            <select class="select2 form-control @error('gender') is-invalid @enderror" id="gender" name="gender" required>
+                                            <label for="fathers_profession">Fathers Profession</label>
+                                            <input id="fathers_profession"
+                                                   class="form-control @error('fathers_profession') is-invalid @enderror"
+                                                   placeholder="Fathers Profession" name="fathers_profession"
+                                                   value="{{old('fathers_profession')?old('fathers_profession'):$data->fathers_profession}}"/>
+                                            @error('fathers_profession')
+                                            <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="reason_to_stay">Reason To Stay </label>
+                                            <input id="reason_to_stay"
+                                                   class="form-control @error('reason_to_stay') is-invalid @enderror"
+                                                   placeholder="Mothers Phone No" name="reason_to_stay"
+                                                   value="{{old('reason_to_stay')?old('reason_to_stay'):$data->reason_to_stay}}"/>
+                                            @error('reason_to_stay')
+                                            <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="gender">Gender <span
+                                                    class="required text-danger">*</span></label>
+                                            <select class="select2 form-control @error('gender') is-invalid @enderror"
+                                                    id="gender" name="gender" required>
                                                 <option value="0">Select Gender</option>
                                                 @foreach($genders as $gender)
-                                                    <option value="{{$gender->code}}" {{ (old('gender')?old('gender'):$data->gender)==$gender->code?'selected':'' }}>{{$gender->name}}</option>
+                                                    <option
+                                                        value="{{$gender->code}}" {{ (old('gender')?old('gender'):$data->gender)==$gender->code?'selected':'' }}>{{$gender->name}}</option>
                                                 @endforeach
                                             </select>
                                             @error('gender')
@@ -104,11 +202,14 @@
 
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="religion">Religion <span class="required text-danger">*</span></label>
-                                            <select class="select2 form-control @error('religion') is-invalid @enderror" id="religion" name="religion" required>
+                                            <label for="religion">Religion <span
+                                                    class="required text-danger">*</span></label>
+                                            <select class="select2 form-control @error('religion') is-invalid @enderror"
+                                                    id="religion" name="religion" required>
                                                 <option value="0">Select Religion</option>
                                                 @foreach($religions as $religion)
-                                                    <option value="{{$religion->code}}" {{ (old('religion')?old('religion'):$data->religion)==$religion->code?'selected':'' }}>{{$religion->name}}</option>
+                                                    <option
+                                                        value="{{$religion->code}}" {{ (old('religion')?old('religion'):$data->religion)==$religion->code?'selected':'' }}>{{$religion->name}}</option>
                                                 @endforeach
                                             </select>
                                             @error('religion')
@@ -120,11 +221,15 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="marital_status">Marital Status <span class="required text-danger">*</span></label>
-                                            <select class="select2 form-control @error('marital_status') is-invalid @enderror" id="marital_status" name="marital_status" required>
+                                            <label for="marital_status">Marital Status <span
+                                                    class="required text-danger">*</span></label>
+                                            <select
+                                                class="select2 form-control @error('marital_status') is-invalid @enderror"
+                                                id="marital_status" name="marital_status" required>
                                                 <option value="0">Select Marital Status</option>
                                                 @foreach($marital_statuses as $marital_status)
-                                                    <option value="{{$marital_status->code}}" {{ (old('marital_status')?old('marital_status'):$data->marital_status)==$marital_status->code?'selected':'' }}>{{$marital_status->name}}</option>
+                                                    <option
+                                                        value="{{$marital_status->code}}" {{ (old('marital_status')?old('marital_status'):$data->marital_status)==$marital_status->code?'selected':'' }}>{{$marital_status->name}}</option>
                                                 @endforeach
                                             </select>
                                             @error('marital_status')
@@ -134,11 +239,15 @@
 
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="profession">Profession <span class="required text-danger">*</span></label>
-                                            <select class="select2 form-control @error('profession') is-invalid @enderror" id="profession" name="profession" required>
+                                            <label for="profession">Profession <span
+                                                    class="required text-danger">*</span></label>
+                                            <select
+                                                class="select2 form-control @error('profession') is-invalid @enderror"
+                                                id="profession" name="profession" required>
                                                 <option value="0">Select Profession</option>
                                                 @foreach($professions as $profession)
-                                                    <option value="{{$profession->code}}" {{ (old('profession')?old('profession'):$data->profession)==$profession->code?'selected':'' }}>{{$profession->name}}</option>
+                                                    <option
+                                                        value="{{$profession->code}}" {{ (old('profession')?old('profession'):$data->profession)==$profession->code?'selected':'' }}>{{$profession->name}}</option>
                                                 @endforeach
                                             </select>
                                             @error('profession')
@@ -149,8 +258,11 @@
 
                                 <div class="form-group">
                                     <label for="guardian_name">Guardian Name <span class="required text-danger">*</span></label>
-                                    <input id="guardian_name" class="form-control @error('guardian_name') is-invalid @enderror"
-                                           placeholder="Guardian Name" name="guardian_name" value="{{old('guardian_name')?old('guardian_name'):$data->guardian_name}}" required/>
+                                    <input id="guardian_name"
+                                           class="form-control @error('guardian_name') is-invalid @enderror"
+                                           placeholder="Guardian Name" name="guardian_name"
+                                           value="{{old('guardian_name')?old('guardian_name'):$data->guardian_name}}"
+                                           required/>
                                     @error('guardian_name')
                                     <div class="help-block text-danger">{{ $message }} </div> @enderror
                                 </div>
@@ -158,9 +270,13 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="gphone">Guardian Phone No <span class="required text-danger">*</span></label>
-                                            <input id="gphone" class="form-control @error('gphone') is-invalid @enderror"
-                                                   placeholder="Guardian Phone No" name="gphone" value="{{old('gphone')?old('gphone'):$data->guardian_phone_no}}" required/>
+                                            <label for="gphone">Guardian Phone No <span
+                                                    class="required text-danger">*</span></label>
+                                            <input id="gphone"
+                                                   class="form-control @error('gphone') is-invalid @enderror"
+                                                   placeholder="Guardian Phone No" name="gphone"
+                                                   value="{{old('gphone')?old('gphone'):$data->guardian_phone_no}}"
+                                                   required/>
                                             @error('gphone')
                                             <div class="help-block text-danger">{{ $message }} </div> @enderror
                                         </div>
@@ -168,11 +284,14 @@
 
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="relation">Relation with Guardian <span class="required text-danger">*</span></label>
-                                            <select class="select2 form-control @error('relation') is-invalid @enderror" id="relation" name="relation" required>
+                                            <label for="relation">Relation with Guardian <span
+                                                    class="required text-danger">*</span></label>
+                                            <select class="select2 form-control @error('relation') is-invalid @enderror"
+                                                    id="relation" name="relation" required>
                                                 <option value="0">Select Relation</option>
                                                 @foreach($relations as $relation)
-                                                    <option value="{{$relation->code}}" {{ (old('relation')?old('relation'):$data->relation_with_guardian)==$relation->code?'selected':'' }}>{{$relation->name}}</option>
+                                                    <option
+                                                        value="{{$relation->code}}" {{ (old('relation')?old('relation'):$data->relation_with_guardian)==$relation->code?'selected':'' }}>{{$relation->name}}</option>
                                                 @endforeach
                                             </select>
                                             @error('relation')
@@ -205,7 +324,6 @@
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
 
-
         $().ready(function () {
             $('form#customer').submit(function (e) {
                 e.preventDefault();
@@ -219,13 +337,13 @@
                 if (building_name == 0 || building_name <= 0) {
                     toastr.warning(" Please Select building name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                     return false;
-                } else if (customer_name ==='') {
+                } else if (customer_name === '') {
                     toastr.warning(" Please enter customer name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                     return false;
-                } else if (phone ==='') {
+                } else if (phone === '') {
                     toastr.warning(" Please enter customer phone no!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                     return false;
-                } else if (address ==='') {
+                } else if (address === '') {
                     toastr.warning(" Please enter customer address!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                     return false;
                 } else {
@@ -270,11 +388,11 @@
                         $('#marital_status').val(null).trigger('change');
                         $('#profession').val(null).trigger('change');
                         $('#relation').val(null).trigger('change');
-                        alartMessage(true,result.message);
+                        alartMessage(true, result.message);
                         flashMessage('success');
                     } else {
                         printErrorMsg(result.data);
-                        alartMessage(false,result.message);
+                        alartMessage(false, result.message);
                         flashMessage('error');
                     }
                 },
@@ -296,14 +414,10 @@
             });
         }
 
-        function alartMessage(success,message)
-        {
-            if(success===true)
-            {
+        function alartMessage(success, message) {
+            if (success === true) {
                 toastr.success(message, 'Message <i class="fa fa-bell faa-ring animated"></i>');
-            }
-            else
-            {
+            } else {
                 toastr.error(message, 'Message <i class="fa fa-bell faa-ring animated"></i>');
             }
         }

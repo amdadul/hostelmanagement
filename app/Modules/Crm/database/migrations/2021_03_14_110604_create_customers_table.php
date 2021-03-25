@@ -22,6 +22,12 @@ class CreateCustomersTable extends Migration
             $table->string('phone_no');
             $table->text('address')->nullable();
             $table->string('nid')->nullable();
+            $table->string('fathers_name')->nullable();
+            $table->string('fathers_phone')->nullable();
+            $table->string('fathers_profession')->nullable();
+            $table->string('mothers_name')->nullable();
+            $table->string('mothers_phone')->nullable();
+            $table->string('reason_to_stay')->nullable();
             $table->string('guardian_name')->nullable();
             $table->string('guardian_phone_no')->nullable();
             $table->string('relation_with_guardian')->nullable();

@@ -55,6 +55,14 @@ class CustomerController extends Controller
         $data->phone_no = $request->phone;
         $data->address = $request->address;
         $data->nid = $request->nid;
+
+        $data->fathers_name = $request->fathers_name;
+        $data->fathers_phone = $request->fathers_phone;
+        $data->fathers_profession = $request->fathers_profession;
+        $data->mothers_name = $request->mothers_name;
+        $data->mothers_phone = $request->mothers_phone;
+        $data->reason_to_stay = $request->reason_to_stay;
+
         $data->guardian_name = $request->guardian_name;
         $data->guardian_phone_no = $request->gphone;
         $data->relation_with_guardian = $request->relation;
@@ -110,6 +118,14 @@ class CustomerController extends Controller
         $data->phone_no = $request->phone;
         $data->address = $request->address;
         $data->nid = $request->nid;
+
+        $data->fathers_name = $request->fathers_name;
+        $data->fathers_phone = $request->fathers_phone;
+        $data->fathers_profession = $request->fathers_profession;
+        $data->mothers_name = $request->mothers_name;
+        $data->mothers_phone = $request->mothers_phone;
+        $data->reason_to_stay = $request->reason_to_stay;
+
         $data->guardian_name = $request->guardian_name;
         $data->guardian_phone_no = $request->gphone;
         $data->relation_with_guardian = $request->relation;

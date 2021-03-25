@@ -8,8 +8,10 @@ use App\Modules\Crm\Models\Building;
 use App\Modules\Crm\Models\Flat;
 use App\Modules\Crm\Models\Floor;
 use App\Modules\Crm\Models\Room;
+use App\Modules\Crm\Models\Seat;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RoomController extends Controller
 {
@@ -99,5 +101,30 @@ class RoomController extends Controller
     {
         $data = Room::where('flat_id','=',$request->flat_id)->where('status','=',Room::AVAILABLE)->get();
         return response()->json($data);
+    }
+
+    public function getSeatQtyByRoom(Request $request):?jsonResponse
+    {
+        $search = trim($request->search);
+
+        $data = DB::table('rooms as r')
+            ->select(DB::raw('r.id, r.name as room, flt.name as flat, flr.name as floor'))
+            ->leftJoin('flats as flt', 'r.flat_id', '=', 'flt.id')
+            ->leftJoin('floors as flr', 'flt.floor_id', '=', 'flr.id')
+            ->leftJoin('buildings as b', 'flr.building_id', '=', 'b.id')
+            ->where(DB::raw("b.id"), "=", $request->building_id)
+            ->where(DB::raw("r.name"), "like", '%'.$search.'%')
+            ->get();
+
+        if (!$data->isEmpty()) {
+            foreach ($data as $dt) {
+                $seat = Seat::where('room_id','=',$dt->id)->where('status','=',Seat::AVAILABLE)->get();
+                $seatAvail = count($seat);
+                $response[] = array("value" => $dt->id, "label" => $dt->room, 'name' => $dt->room, 'flat' => $dt->flat, 'floor' => $dt->floor, 'seat' => $seatAvail, 'seatqty' =>0);
+            }
+        } else {
+            $response[] = array("value" => '', "label" => 'No data found!', 'name' => '',  'flat' => '', 'floor' => '', 'seat'=>0, 'seatqty' =>'No Seat Available');
+        }
+        return response()->json($response);
     }
 }

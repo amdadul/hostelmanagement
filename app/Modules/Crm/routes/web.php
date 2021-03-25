@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth:web']], function () {
         Route::get('/{id}/edit', 'RoomController@edit')->name('crm.rooms.edit');
         Route::post('/{id}/update', 'RoomController@update')->name('crm.rooms.update');
         Route::post('/get-room', 'RoomController@getRoomByFlat')->name('crm.rooms.get-room');
+        Route::post('/get-seat-count', 'RoomController@getSeatQtyByRoom')->name('crm.rooms.get-seat-count');
         Route::post('/get-avail-room', 'RoomController@getAvailableRoomByFlat')->name('crm.rooms.get-avail-room');
         Route::delete('/{id}/delete', 'RoomController@delete')->name('crm.rooms.delete');
     });
@@ -81,6 +82,8 @@ Route::group(['middleware' => ['auth:web']], function () {
         Route::get('/', 'SeatBookingController@index')->name('crm.seat-booking.index');
         Route::get('/create', 'SeatBookingController@create')->name('crm.seat-booking.create');
         Route::post('/store', 'SeatBookingController@store')->name('crm.seat-booking.store');
+        Route::get('/booking', 'SeatBookingController@booking')->name('crm.seat-booking.booking');
+        Route::post('/booking-store', 'SeatBookingController@bookingStore')->name('crm.seat-booking.booking-store');
         Route::get('/{id}/edit', 'SeatBookingController@edit')->name('crm.seat-booking.edit');
         Route::get('/{id}/voucher', 'SeatBookingController@voucher')->name('crm.seat-booking.voucher');
         Route::post('/{id}/update', 'SeatBookingController@update')->name('crm.seat-booking.update');

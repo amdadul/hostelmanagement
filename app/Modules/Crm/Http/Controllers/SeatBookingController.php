@@ -165,6 +165,20 @@ class SeatBookingController extends Controller
         }
     }
 
+    public function booking()
+    {
+        $pageTitle = "Quick Seat booking";
+        $buildings = Building::all();
+        $genders = lookup::getLookupByType(lookup::GENDER);
+        $relations = lookup::getLookupByType(lookup::RELATION);
+        $religions = lookup::getLookupByType(lookup::RELIGION);
+        $marital_statuses = lookup::getLookupByType(lookup::MARITAL_STATUS);
+        $professions = lookup::getLookupByType(lookup::PROFESSION);
+        $payment_type = lookup::getLookupByType(lookup::PAYMENT_METHOD);
+        $bank = lookup::getLookupByType(lookup::BANK);
+        return view('Crm::booking.quick-booking',compact('pageTitle','buildings','payment_type','bank','genders','relations','religions','marital_statuses','professions'));
+    }
+
     function voucher($id)
     {
         $pageTitle = 'Seat Booking Voucher';
