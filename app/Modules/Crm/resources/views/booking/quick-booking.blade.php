@@ -4,6 +4,10 @@
 @push('styles')
     <!-- CSS -->
     <style>
+
+        .table-hover tbody tr:hover, .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgb(221 237 241 / 50%);
+        }
         .ui-datepicker {
             z-index: 999 !important;
         }
@@ -54,7 +58,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="start_date">Start Date</label>
+                                                    <label for="start_date">Stay From</label>
                                                     <input type="text"
                                                            class="form-control @error('start_date') is-invalid @enderror"
                                                            id="start_date" value="{!! date('Y-m-d') !!}"
@@ -67,42 +71,11 @@
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="end_date">End Date</label>
+                                                    <label for="end_date">Leave Date</label>
                                                     <input type="text"
                                                            class="form-control @error('end_date') is-invalid @enderror"
                                                            id="end_date" value="" name="end_date">
                                                     @error('end_date')
-                                                    <div class="help-block text-danger">{{ $message }} </div> @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="building_name">Building Name <span
-                                                            class="required text-danger">*</span></label>
-                                                    <select
-                                                        class="select2 form-control @error('building_name') is-invalid @enderror"
-                                                        id="building_name" name="building_name" required>
-                                                        <option value="0">Select Building Name</option>
-                                                        @foreach($buildings as $building)
-                                                            <option
-                                                                value="{{$building->id}}" {{ old('building_name')==$building->id?'selected':'' }}>{{$building->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('building_name')
-                                                    <div class="help-block text-danger">{{ $message }} </div> @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="reason_to_stay">Reason To Stay </label>
-                                                    <input id="reason_to_stay"
-                                                           class="form-control @error('reason_to_stay') is-invalid @enderror"
-                                                           placeholder="Reason To Stay" name="reason_to_stay"
-                                                           value="{{old('reason_to_stay')?old('reason_to_stay'):''}}"/>
-                                                    @error('reason_to_stay')
                                                     <div class="help-block text-danger">{{ $message }} </div> @enderror
                                                 </div>
                                             </div>
@@ -164,24 +137,119 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="address">Permanent Address <span
-                                                    class="required text-danger">*</span></label>
-                                            <textarea id="address"
-                                                      class="form-control @error('address') is-invalid @enderror"
-                                                      placeholder="Address" name="address"
-                                                      required>{{old('address')?old('address'):''}}</textarea>
-                                            @error('address')
-                                            <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="address">Permanent Address <span
+                                                            class="required text-danger">*</span></label>
+                                                    <textarea id="address"
+                                                              class="form-control @error('address') is-invalid @enderror"
+                                                              placeholder="Address" name="address"
+                                                              required>{{old('address')?old('address'):''}}</textarea>
+                                                    @error('address')
+                                                    <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="reason_to_stay">Reason To Stay </label>
+                                                    <input id="reason_to_stay"
+                                                           class="form-control @error('reason_to_stay') is-invalid @enderror"
+                                                           placeholder="Reason To Stay" name="reason_to_stay"
+                                                           value="{{old('reason_to_stay')?old('reason_to_stay'):''}}"/>
+                                                    @error('reason_to_stay')
+                                                    <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                                </div>
+                                            </div>
                                         </div>
+
+                                        <h4 class="form-section"><i class="fa fa-paperclip"></i> Others Information</h4>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="gender">Gender <span
+                                                            class="required text-danger">*</span></label>
+                                                    <select
+                                                        class="select2 form-control @error('gender') is-invalid @enderror"
+                                                        id="gender" name="gender" required>
+                                                        <option value="0">Select Gender</option>
+                                                        @foreach($genders as $gender)
+                                                            <option
+                                                                value="{{$gender->code}}" {{ old('gender')==$gender->code?'selected':'' }}>{{$gender->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('gender')
+                                                    <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="religion">Religion <span
+                                                            class="required text-danger">*</span></label>
+                                                    <select
+                                                        class="select2 form-control @error('religion') is-invalid @enderror"
+                                                        id="religion" name="religion" required>
+                                                        <option value="0">Select Religion</option>
+                                                        @foreach($religions as $religion)
+                                                            <option
+                                                                value="{{$religion->code}}" {{ old('religion')==$religion->code?'selected':'' }}>{{$religion->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('religion')
+                                                    <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="marital_status">Marital Status <span
+                                                            class="required text-danger">*</span></label>
+                                                    <select
+                                                        class="select2 form-control @error('marital_status') is-invalid @enderror"
+                                                        id="marital_status" name="marital_status" required>
+                                                        <option value="0">Select Marital Status</option>
+                                                        @foreach($marital_statuses as $marital_status)
+                                                            <option
+                                                                value="{{$marital_status->code}}" {{ old('marital_status')==$marital_status->code?'selected':'' }}>{{$marital_status->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('marital_status')
+                                                    <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="profession">Profession <span
+                                                            class="required text-danger">*</span></label>
+                                                    <select
+                                                        class="select2 form-control @error('profession') is-invalid @enderror"
+                                                        id="profession" name="profession" required>
+                                                        <option value="0">Select Profession</option>
+                                                        @foreach($professions as $profession)
+                                                            <option
+                                                                value="{{$profession->code}}" {{ old('profession')==$profession->code?'selected':'' }}>{{$profession->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('profession')
+                                                    <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="form-actions right">
-                                            <button class="btn btn-primary btn-tab-1">Next <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+                                            <button class="btn btn-primary btn-tab-1">Next <i
+                                                    class="fa fa-angle-double-right" aria-hidden="true"></i></button>
                                         </div>
                                     </div>
 
                                     <div class="tab-2">
 
-                                        <h4 class="form-section" style="color: #0c0c0c;"><i class="ft-user"></i> Guardian Information</h4>
+                                        <h4 class="form-section" style="color: #0c0c0c;"><i class="ft-user"></i>
+                                            Guardian Information</h4>
 
                                         <div class="row">
 
@@ -295,89 +363,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-actions right">
-                                            <button class="btn btn-primary btn-tab-2p"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Previous</button>
-                                            <button class="btn btn-primary btn-tab-2"> Next <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                                        </div>
-                                    </div>
 
-                                    <div class="tab-3">
-                                        <h4 class="form-section"><i class="fa fa-paperclip"></i> Others Information</h4>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="gender">Gender <span
-                                                            class="required text-danger">*</span></label>
-                                                    <select
-                                                        class="select2 form-control @error('gender') is-invalid @enderror"
-                                                        id="gender" name="gender" required>
-                                                        <option value="0">Select Gender</option>
-                                                        @foreach($genders as $gender)
-                                                            <option
-                                                                value="{{$gender->code}}" {{ old('gender')==$gender->code?'selected':'' }}>{{$gender->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('gender')
-                                                    <div class="help-block text-danger">{{ $message }} </div> @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="religion">Religion <span
-                                                            class="required text-danger">*</span></label>
-                                                    <select
-                                                        class="select2 form-control @error('religion') is-invalid @enderror"
-                                                        id="religion" name="religion" required>
-                                                        <option value="0">Select Religion</option>
-                                                        @foreach($religions as $religion)
-                                                            <option
-                                                                value="{{$religion->code}}" {{ old('religion')==$religion->code?'selected':'' }}>{{$religion->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('religion')
-                                                    <div class="help-block text-danger">{{ $message }} </div> @enderror
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="marital_status">Marital Status <span
-                                                            class="required text-danger">*</span></label>
-                                                    <select
-                                                        class="select2 form-control @error('marital_status') is-invalid @enderror"
-                                                        id="marital_status" name="marital_status" required>
-                                                        <option value="0">Select Marital Status</option>
-                                                        @foreach($marital_statuses as $marital_status)
-                                                            <option
-                                                                value="{{$marital_status->code}}" {{ old('marital_status')==$marital_status->code?'selected':'' }}>{{$marital_status->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('marital_status')
-                                                    <div class="help-block text-danger">{{ $message }} </div> @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="profession">Profession <span
-                                                            class="required text-danger">*</span></label>
-                                                    <select
-                                                        class="select2 form-control @error('profession') is-invalid @enderror"
-                                                        id="profession" name="profession" required>
-                                                        <option value="0">Select Profession</option>
-                                                        @foreach($professions as $profession)
-                                                            <option
-                                                                value="{{$profession->code}}" {{ old('profession')==$profession->code?'selected':'' }}>{{$profession->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('profession')
-                                                    <div class="help-block text-danger">{{ $message }} </div> @enderror
-                                                </div>
-                                            </div>
-                                        </div>
 
                                         <h4 class="form-section"><i class="fa fa-paperclip"></i> Seat Information</h4>
 
@@ -385,19 +371,38 @@
 
                                             <div class="col-md-3">
                                                 <div class="form-group">
+                                                    <label for="building_name">Building Name <span
+                                                            class="required text-danger">*</span></label>
+                                                    <select
+                                                        class="select2 form-control @error('building_name') is-invalid @enderror"
+                                                        id="building_name" name="building_name" required>
+                                                        <option value="0">Select Building Name</option>
+                                                        @foreach($buildings as $building)
+                                                            <option
+                                                                value="{{$building->id}}" {{ old('building_name')==$building->id?'selected':'' }}>{{$building->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('building_name')
+                                                    <div class="help-block text-danger">{{ $message }} </div> @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
                                                     <label for="floor_name">Floor Name </label>
-                                                    <input type="text" class="form-control @error('floor_name') is-invalid @enderror"
-                                                        id="floor_name" name="floor_name" />
+                                                    <input type="text"
+                                                           class="form-control @error('floor_name') is-invalid @enderror"
+                                                           id="floor_name" name="floor_name"/>
                                                     @error('floor_name')
                                                     <div class="help-block text-danger">{{ $message }} </div> @enderror
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="flat_name">Flat Name</label>
                                                     <input type="text"
-                                                        class="form-control @error('flat_name') is-invalid @enderror"
-                                                        id="flat_name" name="flat_name"/>
+                                                           class="form-control @error('flat_name') is-invalid @enderror"
+                                                           id="flat_name" name="flat_name"/>
                                                     @error('flat_name')
                                                     <div class="help-block text-danger">{{ $message }} </div> @enderror
                                                 </div>
@@ -406,25 +411,25 @@
                                                 <div class="form-group">
                                                     <label for="room_name">Room Name </label>
                                                     <input type="text"
-                                                        class="form-control @error('room_name') is-invalid @enderror"
-                                                        id="room_name" name="room_name"/>
+                                                           class="form-control @error('room_name') is-invalid @enderror"
+                                                           id="room_name" name="room_name"/>
                                                     @error('room_name')
                                                     <div class="help-block text-danger">{{ $message }} </div> @enderror
                                                 </div>
-                                                <input type="hidden" class="room_id" id="room_id" />
+                                                <input type="hidden" class="room_id" id="room_id"/>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="seat_qty">Seat Qty </label>
                                                     <input type="text"
-                                                        class="form-control @error('seat_qty') is-invalid @enderror"
-                                                        id="seat_qty" name="seat_qty" />
+                                                           class="form-control @error('seat_qty') is-invalid @enderror"
+                                                           id="seat_qty" name="seat_qty"/>
                                                     @error('seat_qty')
                                                     <div class="help-block text-danger">{{ $message }} </div> @enderror
                                                 </div>
                                             </div>
                                         </div>
-                                        <input type="hidden" class="available-qty" id="available-qty" />
+                                        <input type="hidden" class="available-qty" id="available-qty"/>
                                         <h4 class="form-section"><i class="fa fa-paperclip"></i> Charge Information
                                         </h4>
                                         <div class="row">
@@ -442,30 +447,113 @@
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="seat_charge">Seat Charge</label>
-                                                    <input type="seat_charge"
-                                                           class="form-control @error('seat_charge') is-invalid @enderror"
-                                                           id="seat_charge" name="seat_charge">
-                                                    @error('seat_charge')
+                                                    <label for="monthly_charge">Monthly Charge</label>
+                                                    <input type="monthly_charge"
+                                                           class="form-control @error('monthly_charge') is-invalid @enderror"
+                                                           id="monthly_charge" name="monthly_charge">
+                                                    @error('monthly_charge')
                                                     <div class="help-block text-danger">{{ $message }} </div> @enderror
                                                 </div>
                                             </div>
 
                                         </div>
 
+                                        <div class="modal fade  bd-example-modal-lg" id="exampleModalLong" tabindex="-1"
+                                             role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">Quick Booking Form</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="container-fluid">
+                                                            <div class="row" style="height: 120px;">
+                                                                <div class="col-md-4 d-flex justify-content-center text-center" ><div class="d-flex justify-content-center align-items-center" style="border: 1px solid black; height: 120px; width: 120px;">অভিভাবকের ছবি</div></div>
+                                                                <div class="col-md-4 ml-auto text-center"><img style="width: 200px; margin-top: -50px;" src="{{asset('app-assets/images/city_logo.png')}}"></div>
+                                                                <div class="col-md-4 d-flex justify-content-center text-center" ><div class="d-flex justify-content-center align-items-center" style="border: 1px solid black; height: 120px; width: 120px;">আবেদনকারীর ছবি</div></div>
+                                                            </div>
+                                                            <hr>
+                                                            <div class="row">
+                                                                <div class="col-md-6 ml-auto"><table class="table-striped">
+                                                                        <tr><td>আবেদনকারীর নামঃ</td> <td><span id="aname"></span></td></tr>
+                                                                        <tr><td>পিতার নামঃ </td><td><span id="fname"></span></td></tr>
+                                                                        <tr><td>মাতার নামঃ </td><td><span id="mname"></span></td></tr>
+                                                                        <tr><td>পিতার পেশাঃ </td><td><span id="fprofession"></span></td></tr>
+                                                                        <tr><td>জাতীয় পরিচয়পত্র নংঃ </td><td><span id="anid"></span></td></tr>
+                                                                        <tr><td>লিঙ্গঃ</td> <td><span id="agender"></span></td></tr>
+                                                                        <tr><td>বৈবাহিক অবস্থাঃ </td><td><span id="amarital"></span></td></tr>
+                                                                        <tr><td>অভিভাবকের নামঃ </td><td><span id="gname"></span></td></tr>
+                                                                        <tr><td>অভিভাবকের সাথে সম্পর্কঃ </td><td><span id="rwg"></span></td></tr>
+                                                                        <tr><td>ঠিকানাঃ </td><td><span id="paddress"></span></td></tr>
+                                                                    </table></div>
+                                                                <div class="col-md-6 ml-auto"><table class="table-striped">
+                                                                        <tr><td>আবেদনকারীর মোবাইল নংঃ </td><td><span id="aphone"></span></td></tr>
+                                                                        <tr><td>পিতার মোবাইল নংঃ </td><td><span id="fphone"></span></td></tr>
+                                                                        <tr><td>মাতার মোবাইল নংঃ </td><td><span id="mphone"></span></td></tr>
+                                                                        <tr><td>থাকার কারণঃ </td><td><span id="reason"></span></td></tr>
+                                                                        <tr><td>ইমেইলঃ </td><td><span id="aemail"></span></td></tr>
+                                                                        <tr><td>ধর্মঃ </td><td><span id="arel"></span></td></tr>
+                                                                        <tr><td>পেশাঃ </td><td><span id="aprof"></span></td></tr>
+                                                                        <tr><td>অভিভাবকের মোবাইল নংঃ </td><td><span id="gph"></span></td></tr>
+                                                                    </table></div>
+                                                            </div>
 
-                                    <div class="form-actions right">
-                                        <button type="button" class="btn btn-warning mr-1">
-                                            <i class="ft-refresh-ccw"></i> Reload
-                                        </button>
-                                        <button class="btn btn-primary btn-tab-3p" >
-                                            <i class="fa fa-angle-double-left" aria-hidden="true"></i> Previous
-                                        </button>
-                                        <button type="submit" class="btn btn-primary" name="saveInvoice">
-                                            <i class="fa fa-check-square-o"></i> Save
-                                        </button>
+                                                            <div class="row d-flex justify-content-center text-center" style="border-bottom: 1px solid black">
+                                                                <b class="text-center">বরাদ্দকৃত রুমের বিবরণ</b>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-6 ml-auto"><table class="table-striped">
+                                                                        <tr><td>বাসার নামঃ</td> <td><span id="build"></span></td></tr>
+                                                                        <tr><td>ফ্লাটের নামঃ </td><td><span id="flat"></span></td></tr>
+                                                                        <tr><td>সিট সংখ্যাঃ </td><td><span id="seat"></span></td></tr>
+                                                                    </table></div>
+                                                                <div class="col-md-6 ml-auto"><table class="table-striped">
+                                                                        <tr><td>ফ্লোর নংঃ </td><td><span id="floor"></span></td></tr>
+                                                                        <tr><td>রুম নংঃ </td><td><span id="room"></span></td></tr>
+                                                                    </table></div>
+                                                            </div>
+                                                            <hr>
+                                                            <div class="row">
+                                                                <div class="col-md-6 ml-auto"><table class="table-striped">
+                                                                        <tr><td>সার্ভিস চার্জ ঃ </td> <td><span id="service"></span></td></tr>
+                                                                    </table></div>
+                                                                <div class="col-md-6 ml-auto"><table class="table-striped">
+                                                                        <tr><td>মাসিক চার্জ ঃ </td><td><span id="monthly"></span></td></tr>
+                                                                    </table></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close
+                                                        </button>
+                                                        <button type="submit" class="btn btn-primary" name="saveInvoice">
+                                                            <i class="fa fa-check-square-o"></i> Confirm
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-actions right">
+                                            <button type="button" class="btn btn-warning mr-1">
+                                                <i class="ft-refresh-ccw"></i> Reload
+                                            </button>
+                                            <button class="btn btn-primary btn-tab-2p">
+                                                <i class="fa fa-angle-double-left" aria-hidden="true"></i> Previous
+                                            </button>
+                                            <button type="button" class="btn btn-primary load-model" data-toggle="modal"
+                                                    data-target="#exampleModalLong">
+                                                Save
+                                            </button>
+
+                                        </div>
                                     </div>
-                                </div>
+
                                 </div>
                             </form>
                         </div>
@@ -523,34 +611,87 @@
             });
         });
 
-        $(".btn-tab-1").click(function(){
+        $(".btn-tab-1").click(function () {
             $(".tab-1").hide();
             $(".tab-2").show();
         });
 
-        $(".btn-tab-2").click(function(){
+        $(".btn-tab-2").click(function () {
             $(".tab-2").hide();
             $(".tab-3").show();
         });
 
-        $(".btn-tab-2p").click(function(){
+        $(".btn-tab-2p").click(function () {
             $(".tab-2").hide();
             $(".tab-1").show();
         });
 
-        $(".btn-tab-3").click(function(){
+        $(".btn-tab-3").click(function () {
             $(".tab-3").hide();
             $(".tab-4").show();
         });
 
-        $(".btn-tab-3p").click(function(){
+        $(".btn-tab-3p").click(function () {
             $(".tab-3").hide();
             $(".tab-2").show();
         });
 
-        $(".btn-tab-4p").click(function(){
+        $(".btn-tab-4p").click(function () {
             $(".tab-4").hide();
             $(".tab-3").show();
+        });
+
+        $(".load-model").click(function () {
+            var applicant_name = $("#customer_name").val();
+            $("#aname").text(applicant_name);
+            var applicant_phone = $("#phone").val();
+            $("#aphone").text(applicant_phone);
+            var email = $("#email").val();
+            $("#aemail").text(email);
+            var nid = $("#nid").val();
+            $("#anid").text(nid);
+            var address = $("#address").val();
+            $("#paddress").text(address);
+            var fname = $("#fathers_name").val();
+            $("#fname").text(fname);
+            var fphone = $("#fathers_phone").val();
+            $("#fphone").text(fphone);
+            var fprof = $("#fathers_profession").val();
+            $("#fprofession").text(fprof);
+            var mname = $("#mothers_name").val();
+            $("#mname").text(mname);
+            var mphone = $("#mothers_phone").val();
+            $("#mphone").text(mphone);
+            var rts = $("#reason_to_stay").val();
+            $("#reason").text(rts);
+            var gname = $("#guardian_name").val();
+            $("#gname").text(gname);
+            var gphone = $("#gphone").val();
+            $("#gph").text(gphone);
+            var rwg = $("#relation :selected").text();
+            $("#rwg").text(rwg);
+            var gender = $("#gender :selected").text();
+            $("#agender").text(gender);
+            var mstatus = $("#marital_status :selected").text();
+            $("#amarital").text(mstatus);
+            var relig = $("#religion :selected").text();
+            $("#arel").text(relig);
+            var prof = $("#profession :selected").text();
+            $("#aprof").text(prof);
+            var bldn = $("#building_name :selected").text();
+            $("#build").text(bldn);
+            var floor = $("#floor_name").val();
+            $("#floor").text(floor);
+            var flat = $("#flat_name").val();
+            $("#flat").text(flat);
+            var room = $("#room_name").val();
+            $("#room").text(room);
+            var seat = $("#seat_qty").val();
+            $("#seat").text(seat);
+            var service = $("#service_charge").val();
+            $("#service").text(service);
+            var charge = $("#monthly_charge").val();
+            $("#monthly").text(charge);
         });
 
         $("#payment_method").change(function () {
@@ -653,11 +794,9 @@
             source: function (request, response) {
                 var building_id = parseInt($('#building_name').val());
 
-                if(building_id<=0 || building_id=='')
-                {
+                if (building_id <= 0 || building_id == '') {
                     toastr.error("Please select Building", 'Message <i class="fa fa-bell faa-ring animated"></i>');
-                }
-                else {
+                } else {
                     $.ajax({
                         url: "{{ route('crm.rooms.get-seat-count') }}",
                         type: 'post',
@@ -701,8 +840,7 @@
         $('#seat_qty').on('keyup', e => {
             var seatAvail = parseInt($('#available-qty').val());
             var seatGiven = parseInt($('#seat_qty').val());
-            if(seatGiven>seatAvail)
-            {
+            if (seatGiven > seatAvail) {
                 var message = "Seat Not Available.";
                 toastr.error(message, 'Message <i class="fa fa-bell faa-ring animated"></i>');
             }
