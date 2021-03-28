@@ -22,6 +22,8 @@ class CreateInvoicesTable extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->date('invoice_month')->nullable();
+            $table->unsignedBigInteger('room_id');
+            $table->foreign('room_id')->references('id')->on('rooms');
             $table->integer('seat_qty');
             $table->double('amount');
             $table->date('date');

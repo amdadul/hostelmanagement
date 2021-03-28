@@ -47,7 +47,7 @@ class SeatBookingDataTable extends DataTable
             ->editColumn('status',function ($data){
                 return $data->status==1?'Active':'Leave The Seat';
             })
-            ->rawColumns(['action'],['customer_id'])
+            ->rawColumns(['action','customer_id'])
             ->removeColumn('id');
     }
 

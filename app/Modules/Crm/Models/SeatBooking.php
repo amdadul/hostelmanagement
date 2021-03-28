@@ -20,6 +20,11 @@ class SeatBooking extends Model
         return $this->belongsTo(Seat::class);
     }
 
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
+    }
+
     public function service_charge()
     {
         return $this->hasOne(ServiceCharge::class,'booking_id');

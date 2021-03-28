@@ -416,7 +416,7 @@
                                                     @error('room_name')
                                                     <div class="help-block text-danger">{{ $message }} </div> @enderror
                                                 </div>
-                                                <input type="hidden" class="room_id" id="room_id"/>
+                                                <input type="hidden" class="room_id" id="room_id" name="room_id"/>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">

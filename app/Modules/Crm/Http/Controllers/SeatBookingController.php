@@ -247,11 +247,12 @@ class SeatBookingController extends Controller
                 $booking->customer_id = $customer_id;
                 $booking->service_charge = $service_charge = $params['service_charge'];
                 $booking->monthly_charge = $monthly_charge = $params['monthly_charge'];
+                $booking->room_id = $roomid = $params['room_id'];
                 $booking->seat_qty = $seat_qty = $params['seat_qty'];
                 $booking->grand_total = $grand_total = $service_charge+$monthly_charge;
                 $booking->created_by = $created_by;
                 $booking->updated_by = $updated_by;
-                $roomid = $params['room_id'];
+
                 if ($booking->save()) {
                     $booking_id = $booking->id;
                     $isAnyItemIsMissing = false;
@@ -279,6 +280,7 @@ class SeatBookingController extends Controller
                     $invoice->invoice_no = $invoiceNo;
                     $invoice->customer_id = $customer_id;
                     $invoice->invoice_month = $params['start_date'];
+                    $invoice->room_id = $roomid;
                     $invoice->seat_qty = $seat_qty;
                     $invoice->amount = $monthly_charge;
                     $invoice->date = date('Y-m-d');
@@ -298,8 +300,9 @@ class SeatBookingController extends Controller
                         $charge->booking_id = $booking_id;
                         $charge->customer_id = $customer_id;
                         $charge->invoice_month = $params['start_date'];
+                        $charge->room_id = $roomid;
                         $charge->seat_qty = $seat_qty;
-                        $charge->amount = $monthly_charge;
+                        $charge->amount = $service_charge;
                         $charge->date = date('Y-m-d');
                         $charge->invoice_type = Invoice::SERVICE_CHARGE;
                         if ($charge->save()) {
@@ -336,7 +339,7 @@ class SeatBookingController extends Controller
     {
         $pageTitle = 'Seat Booking Voucher';
         $booking = SeatBooking::find($id);
-        return view('Crm::booking.voucher',compact('pageTitle','booking'));
+        return view('Crm::booking.booking-voucher',compact('pageTitle','booking'));
     }
 
 }
