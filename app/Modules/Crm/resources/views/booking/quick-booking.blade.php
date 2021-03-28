@@ -507,11 +507,13 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-6 ml-auto"><table class="table-striped">
+                                                                        <tr><td>বুকিং এর তারিখঃ</td> <td><span id="bdate"></span></td></tr>
                                                                         <tr><td>বাসার নামঃ</td> <td><span id="build"></span></td></tr>
                                                                         <tr><td>ফ্লাটের নামঃ </td><td><span id="flat"></span></td></tr>
                                                                         <tr><td>সিট সংখ্যাঃ </td><td><span id="seat"></span></td></tr>
                                                                     </table></div>
                                                                 <div class="col-md-6 ml-auto"><table class="table-striped">
+                                                                        <tr><td>ওঠার তারিখঃ </td><td><span id="edate"></span></td></tr>
                                                                         <tr><td>ফ্লোর নংঃ </td><td><span id="floor"></span></td></tr>
                                                                         <tr><td>রুম নংঃ </td><td><span id="room"></span></td></tr>
                                                                     </table></div>
@@ -644,6 +646,10 @@
         $(".load-model").click(function () {
             var applicant_name = $("#customer_name").val();
             $("#aname").text(applicant_name);
+            var start_date = $("#start_date").val();
+            $("#bdate").text(start_date);
+            var end_date = $("#end_date").val();
+            $("#edate").text(end_date);
             var applicant_phone = $("#phone").val();
             $("#aphone").text(applicant_phone);
             var email = $("#email").val();
@@ -843,6 +849,7 @@
             if (seatGiven > seatAvail) {
                 var message = "Seat Not Available.";
                 toastr.error(message, 'Message <i class="fa fa-bell faa-ring animated"></i>');
+                $('#seat_qty').val(0);
             }
         })
 
@@ -887,7 +894,8 @@
         $().ready(function () {
             $('form#booking-form').submit(function () {
 
-                var customer_id = $.trim($('#customer_id').val());
+                var customer_name = $.trim($('#customer_name').val());
+                var seat_qty = $.trim($('#seat_qty').val());
                 var date = $('#start_date').val();
                 var building_name = $.trim($('#building_name').val());
 
@@ -896,14 +904,16 @@
                     toastr.warning(" Please select start date!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                     return false;
                 }
-                if (customer_id === '') {
-                    toastr.warning(" Please select  customer!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
+                if (seat_qty === '' || seat_qty <=0) {
+                    toastr.warning(" Please enter seat Quantity!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                     return false;
                 }
-
-                var rowCount = $('#table-data-list tbody tr.cartList').length;
-                if (nanCheck(rowCount) <= 0 || rowCount === 'undefined') {
-                    toastr.warning(" Please add at least one item to grid!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
+                if (customer_name === '') {
+                    toastr.warning(" Please enter  customer name!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
+                    return false;
+                }
+                if (building_name === '') {
+                    toastr.warning(" Please select building!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                     return false;
                 }
             });

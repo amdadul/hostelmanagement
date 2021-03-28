@@ -22,6 +22,9 @@ class CreateSeatBookingsTable extends Migration
             $table->date('booking_date');
             $table->date('start_date');
             $table->date('end_date')->nullable();
+            $table->double('service_charge')->nullable();
+            $table->double('monthly_charge');
+            $table->integer('seat_qty');
             $table->double('grand_total');
             $table->tinyInteger('status')->default(1);
             $table->unsignedBigInteger('created_by')->nullable();

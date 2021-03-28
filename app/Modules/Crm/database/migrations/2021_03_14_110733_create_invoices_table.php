@@ -17,12 +17,15 @@ class CreateInvoicesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('max_sl_no');
             $table->string('invoice_no')->nullable();
+            $table->unsignedBigInteger('booking_id');
+            $table->foreign('booking_id')->references('id')->on('seat_bookings');
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customers');
-            $table->date('invoice_month');
+            $table->date('invoice_month')->nullable();
+            $table->integer('seat_qty');
             $table->double('amount');
             $table->date('date');
-            $table->string('invoice_type')->nullable();
+            $table->tinyInteger('invoice_type')->nullable();
             $table->tinyInteger('full_paid')->default(0);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users');
