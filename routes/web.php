@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('cityhostel');
+})->name('index');
 
 Route::get('/admin', 'HomeController@admin')->name('admin');
 
