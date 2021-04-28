@@ -89,4 +89,8 @@ Route::group(['middleware' => ['auth:web']], function () {
         Route::post('/{id}/update', 'SeatBookingController@update')->name('crm.seat-booking.update');
         Route::delete('/{id}/delete', 'SeatBookingController@delete')->name('crm.seat-booking.delete');
     });
+
+    Route::group(['prefix' => 'admin/crm/invoice'], function () {
+        Route::post('/due-invoice', 'InvoiceController@getDueInvoice')->name('crm.invoice.due-invoice');
+    });
 });

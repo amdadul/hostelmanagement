@@ -30,4 +30,14 @@ Route::group(['middleware' => ['auth:web']], function () {
         Route::post('/{id}/update', 'AssetsController@update')->name('accounts.assets.update');
         Route::delete('/{id}/delete', 'AssetsController@delete')->name('accounts.assets.delete');
     });
+
+    Route::group(['prefix' => 'admin/accounts/money-receipt'], function () {
+        Route::get('/', 'MoneyReceiptController@index')->name('accounts.money-receipt.index');
+        Route::get('/create', 'MoneyReceiptController@create')->name('accounts.money-receipt.create');
+        Route::post('/store', 'MoneyReceiptController@store')->name('accounts.money-receipt.store');
+        Route::get('/{id}/edit', 'MoneyReceiptController@edit')->name('accounts.money-receipt.edit');
+        Route::get('/{id}/voucher', 'MoneyReceiptController@voucher')->name('accounts.money-receipt.voucher');
+        Route::post('/{id}/update', 'MoneyReceiptController@update')->name('accounts.money-receipt.update');
+        Route::delete('/{id}/delete', 'MoneyReceiptController@delete')->name('accounts.money-receipt.delete');
+    });
 });

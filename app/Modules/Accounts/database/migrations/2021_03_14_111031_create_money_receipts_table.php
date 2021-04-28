@@ -17,9 +17,9 @@ class CreateMoneyReceiptsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('max_sl_no');
             $table->string('voucher_no')->nullable();
+            $table->unsignedBigInteger('invoice_id')->nullable();
+            $table->foreign('invoice_id')->references('id')->on('invoices');
             $table->integer('receipt_type');
-            $table->unsignedBigInteger('seat_id');
-            $table->foreign('seat_id')->references('id')->on('seats');
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->tinyInteger('collection_type');
