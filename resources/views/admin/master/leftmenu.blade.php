@@ -133,9 +133,9 @@
                     </li>
                 </ul>
             </li>
-            <li class=" nav-item"><a href="#"><i class="feather icon-zap"></i><span class="menu-title" data-i18n="Starter kit">Starter kit</span></a>
+            <li class=" nav-item"><a href="#"><i class="fa fa-usd" aria-hidden="true"></i><span class="menu-title" data-i18n="Starter kit"> Accounts</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/starter-kit/ltr/vertical-modern-menu-template/layout-1-column.html" data-i18n="1 column">1 column</a>
+                    <li><a class="{{request()->routeIs('accounts.money-receipt*')?'active':''}}" href="{{Route('accounts.money-receipt.index')}}" > Money Receipt</a>
                     </li>
                     <li><a class="menu-item" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/starter-kit/ltr/vertical-modern-menu-template/layout-2-columns.html" data-i18n="2 columns">2 columns</a>
                     </li>

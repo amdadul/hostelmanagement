@@ -20,6 +20,12 @@ class Invoice extends Model
         return $maxSn ? $maxSn + 1 : 1;
     }
 
+    public static function receiptType($invoice_id)
+    {
+        $invoice = Invoice::findOrFail($invoice_id);
+        return $invoice->invoice_type;
+    }
+
     public function customer()
     {
         $this->belongsTo(Customer::class);

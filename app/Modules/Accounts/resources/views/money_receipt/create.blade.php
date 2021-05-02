@@ -41,7 +41,7 @@
 
                                         <div class="row">
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="customer_name">Customer Name</label>
                                                     <input type="text"
@@ -55,7 +55,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-5">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="contact_no">Phone no</label>
                                                     <input type="text" class="form-control" id="contact_no" value="" autocomplete="off">
@@ -68,6 +68,12 @@
                                                             onclick="getDueInvoice()">
                                                         <i class="icon-magnifier"></i>
                                                     </button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="remarks">Remarks</label>
+                                                    <input type="text" class="form-control" name="remarks" id="remarks" value="" autocomplete="off">
                                                 </div>
                                             </div>
                                         </div>
@@ -251,7 +257,7 @@
                 // Get the Login Name value and trim it
                 var date = $.trim($('#date').val());
                 var customer_id = $.trim($('#customer_id').val());
-                var payment_method = $.trim($('#payment_method').val());
+                var payment_method = parseInt($.trim($('#payment_method').val()));
                 var bank_id = $.trim($('#bank_id').val());
                 var cheque_no = $.trim($('#cheque_no').val());
                 var cheque_date = $.trim($('#cheque_date').val());
@@ -268,13 +274,12 @@
                     toastr.warning(" Please select  payment method!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                     return false;
                 }
-                payment_method = nanCheck(payment_method);
                 if (isValidCode(payment_method, bankArray)) {
-                    if (bank_id === '' || bank_id <=0) {
+                    if (bank_id === '' || bank_id =='none') {
                         toastr.warning(" Please select  bank!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                         return false;
                     }
-                    if (isValidCode(payment_method, paymentChequeArray)) {
+                    if (isValidCode(parseInt(payment_method), paymentChequeArray)) {
                         if (cheque_no === '' || cheque_date === '') {
                             toastr.warning(" Please select  cheque no & cheque date!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                             return false;
@@ -286,7 +291,7 @@
                     toastr.warning(" Please add at least one item to grid!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                     return false;
                 }
-                // console.log(grand_total);
+
                 if (grand_total <= 0 || grand_total === "") {
                     toastr.warning(" Please insert mr amount!", 'Message <i class="fa fa-bell faa-ring animated"></i>');
                     return false;

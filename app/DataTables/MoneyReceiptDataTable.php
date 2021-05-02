@@ -30,7 +30,7 @@ class MoneyReceiptDataTable extends DataTable
                     <div class='form-group'>
                         <div class='btn-group' role='group' aria-label='Basic example'>
                             <a href='money-receipt/$data->id/edit' class='btn btn-icon btn-secondary'><i class='fa fa-pencil-square-o'></i> Edit</a>
-                            <a href='money-receipt/$data->id/voucher' class='btn btn-icon btn-info'><i class='fa fa-eye'></i> View</a>
+                            <a href='money-receipt/$data->voucher_no/voucher' class='btn btn-icon btn-info'><i class='fa fa-eye'></i> View</a>
                             <button data-remote='money-receipt/$data->id/delete' class='btn btn-icon btn-danger btn-delete'><i class='fa fa-trash-o'></i> Delete</button>
                         </div>
                    </div>";
@@ -42,7 +42,7 @@ class MoneyReceiptDataTable extends DataTable
                 return isset($data->invoice->invoice_no) ? $data->invoice->invoice_no : 'N/A';
             })
             ->editColumn('receipt_type', function ($data) {
-                return $data->receipt_type == 1 ? 'Invoice' : 'Advance';
+                return $data->receipt_type == 1 ? 'Cash' : 'Advance';
             })
             ->rawColumns(['action', 'customer_id'])
             ->removeColumn('id');

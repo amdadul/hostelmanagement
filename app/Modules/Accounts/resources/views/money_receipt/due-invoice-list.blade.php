@@ -239,21 +239,12 @@
         }
     });
 
-    function nanCheck(value) {
-        return isNaN(value) ? 0 : value;
-    }
-
-    function isValidCode(code, codes) {
-        return ($.inArray(code, codes) > -1);
-    }
-
     function calculate(e) {
         var serial = 1;
         var discount_total = 0;
         var payment_total = 0;
         var grand_total = 0;
         $("#table-data-list tbody tr.cartList th.count ").each(function (index, element) {
-                console.log("CALCULATION STARTED::" + index);
                 serial++;
                 var temp_invoice_no = $(this).closest('tr').find(".invoice-no").html();
                 var temp_invoice_due = nanCheck(parseFloat($(this).closest('tr').find(".invoice_due").val()));

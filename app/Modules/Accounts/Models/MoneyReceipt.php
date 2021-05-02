@@ -12,6 +12,10 @@ class MoneyReceipt extends Model
 {
     protected $guarded = [];
 
+    const MONTHLY_CHARGE = 1;
+    const ADVANCE = 2;
+    const SERVICE_CHARGE = 3;
+
     public function maxSlNo(){
         $maxSn = $this->max('max_sl_no');
         return $maxSn ? $maxSn + 1 : 1;
@@ -27,16 +31,16 @@ class MoneyReceipt extends Model
 
     public function seat()
     {
-        $this->belongsTo(Seat::class);
+        return $this->belongsTo(Seat::class);
     }
 
     public function customer()
     {
-        $this->belongsTo(Customer::class);
+        return $this->belongsTo(Customer::class);
     }
 
     public function invoice()
     {
-        $this->belongsTo(Invoice::class);
+        return $this->belongsTo(Invoice::class);
     }
 }
